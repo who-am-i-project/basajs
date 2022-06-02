@@ -1,25 +1,18 @@
-const express = require("express");
-const app = express();
-const socket = require("socket.io");
-const cors = require("cors");
-import { addUser, getUser, removeUser } from "./manager";
+import express from 'express';
+import { Server } from "socket.io";
+import { createServer } from 'http';
 
-app.use(express());
+import { addUser, getUser, removeUser } from "./manager.js";
 
 const port = 8000;
 
-app.use(cors());
-
-var server = app.listen(
-    port,
-    console.log(
-        `Server is running on the port no: ${port} `
-    )
-);
-
-const io = socket(server);
+const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
+    console.log('user connected');
+
     socket.on("joinGame", ({ username }) => {
         let curUser = addUser(socket.id, username);
         console.log(`user: id = ${curUser.id}`);
@@ -63,3 +56,5 @@ io.on("connection", (socket) => {
         }
     });
 });
+
+httpServer.listen(port);

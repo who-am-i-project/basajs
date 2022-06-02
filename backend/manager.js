@@ -1,9 +1,9 @@
-import { User } from './user';
+import { User } from './user.js';
 
 const users = [];
 
 function addUser(id, username) {
-    let curUser = User(id, username);
+    let curUser = new User(id, username);
     users.push(curUser);
     return curUser;
 }

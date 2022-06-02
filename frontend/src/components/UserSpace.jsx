@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ItemList from './ItemList'
 import Form from './Form';
 
-const UserSpace = () => {
+const UserSpace = ({ socket }) => {
     const [questionsList, setUserQuestions] = useState([
         // {id: 1, body: 'Am I alive or not alive object?'},
         // {id: 2, body: 'Am I an mammal or a plant?'},
         // {id: 3, body: 'Do I have black and white skin?'}
     ])
     const [guessesList, setUserGuesses] = useState([])
-    const [inputType, setInputType] = useState({type: ''})
+    const [inputType, setInputType] = useState({ type: '' })
 
-    const addNewItem = ({inputValue, setNewInputValue}) => {
+    const addNewItem = ({ inputValue, setNewInputValue }) => {
         if (inputValue) {
             const newUserInput = {
                 id: Date.now(),
@@ -25,7 +25,7 @@ const UserSpace = () => {
                 setUserGuesses([...guessesList, newUserInput]);
             }
             setNewInputValue('');
-            setInputType({type: ''});
+            setInputType({ type: '' });
         }
     }
 
@@ -33,13 +33,13 @@ const UserSpace = () => {
         if (inputType.type.length === 0) {
             return (
                 <div>
-                    <button onClick={_ => setInputType({type: 'question'})}>Ask a question</button>
-                    <button onClick={_ => setInputType({type: 'guess'})}>Guess</button>
+                    <button onClick={_ => setInputType({ type: 'question' })}>Ask a question</button>
+                    <button onClick={_ => setInputType({ type: 'guess' })}>Guess</button>
                 </div>
             )
         } else {
             return (
-                <Form itemAdder={addNewItem} inputProps={{inputType: inputType.type}}/>
+                <Form itemAdder={addNewItem} inputProps={{ inputType: inputType.type }} />
             )
         }
     }
@@ -49,9 +49,9 @@ const UserSpace = () => {
             {
                 renderForm()
             }
-            <ItemList list={questionsList} inputType={'questions'}/>
-            <hr/>
-            <ItemList list={guessesList} inputType={'guesses'}/>
+            <ItemList list={questionsList} inputType={'questions'} />
+            <hr />
+            <ItemList list={guessesList} inputType={'guesses'} />
         </div>
     )
 }
