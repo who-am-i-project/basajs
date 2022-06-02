@@ -3,7 +3,8 @@ import './styles/App.css'
 import { Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 
-import UserSpace from './components/UserSpace'
+// import UserSpace from './components/UserSpace'
+import Game from './components/Game'
 import LoginPage from './components/LoginPage'
 
 const socket = io.connect('/');
@@ -13,7 +14,8 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path='/login' element={<LoginPage socket={socket} />} />
-                <Route path='/game/:username' element={<UserSpace socket={socket} />} />
+                <Route path='/game/:username' element={<Game socket={socket} />} />
+                {/* <Route path='/game/:username' element={<UserSpace socket={socket} />} /> */}
             </Routes>
         </div>
     );

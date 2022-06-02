@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const Form = ({itemAdder, inputProps}) => {
+const Form = ({itemAdder, inputType}) => {
     const [inputValue, setNewInputValue] = useState('');
 
     return (
@@ -9,9 +9,9 @@ const Form = ({itemAdder, inputProps}) => {
                 value={inputValue} 
                 type='text' 
                 onChange={event => setNewInputValue(event.target.value)}
-                placeholder={`Enter your ${inputProps.inputType}`}>
+                placeholder={`Enter your ${inputType}`}>
             </input>
-            <button onClick={_ => itemAdder({inputValue, setNewInputValue})}>Post a {inputProps.inputType}</button>
+            <button onClick={_ => itemAdder({inputValue, setNewInputValue})}>Post a {inputType}</button>
         </div>
     )
 }
