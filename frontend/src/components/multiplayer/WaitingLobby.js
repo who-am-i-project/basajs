@@ -1,4 +1,6 @@
 const WaitingLobby = (props) => {
-    return "Waiting...";
+    return (
+        <center className="Wait-Text">Waiting...</center>
+    );
 }
 export default WaitingLobby;
