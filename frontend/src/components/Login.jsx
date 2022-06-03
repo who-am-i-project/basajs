@@ -1,12 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
 
-const LoginPage = ({ socket }) => {
+import MultiplayerContext from "./MultiplayerContext";
+
+const Login = ({ socket }) => {
     const [username, setUserName] = useState('');
+    const { setIsWaiting, setIsInGameRoom } = useContext(MultiplayerContext);
 
-    const sendUserData = () => {
+    const joinGame = () => {
         if (username !== "") {
             socket.emit("joinGame", { username });
+            setIsWaiting(true);
+            socket.on("gameJoined", () => {
+                setIsInGameRoom(true);
+                setIsWaiting(false);
+            });
         } else {
             alert("Enter username!");
             window.location.reload();
@@ -21,11 +28,9 @@ const LoginPage = ({ socket }) => {
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
             />
-            <Link to={`/game/${username}`}>
-                <button onClick={sendUserData}>Join</button>
-            </Link>
+            <button onClick={joinGame}>Join</button>
         </div>
     );
 }
 
-export default LoginPage;
+export default Login;
