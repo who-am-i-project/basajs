@@ -15,6 +15,7 @@ const io = new Server(httpServer);
 const lobby = new Lobby();
 
 let roomId = 0;
+let questionId = 0;
 const roomCapacity = 3;
 
 const rooms = [];
@@ -51,9 +52,11 @@ io.on("connection", (socket) => {
     socket.on("question", (text) => {
         let curUser = getUser(socket.id);
         io.to(curUser.roomId).emit("otherQuestion", {
+            questionId: questionId,
             username: curUser.username,
             text: text,
         });
+        questionId++;
     });
 
     //user sending vote

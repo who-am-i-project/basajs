@@ -8,6 +8,6 @@ export class User {
         this.hp = 10;
         this.won = false;
         this.blocked = false;
-        this.secretWord = this.secretWords[Math.floor(Math.random() * this.secretWords.length)];;
+        this.secretWord = User.secretWords[Math.floor(Math.random() * User.secretWords.length)];;
     }
 }

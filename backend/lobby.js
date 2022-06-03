@@ -11,7 +11,7 @@ export class Lobby {
     }
 
     isJoined(userId) {
-        return users.some((user) => user.id === userId);
+        return this.users.some((user) => user.id === userId);
     }
 
     size() {
