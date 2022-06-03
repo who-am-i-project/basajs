@@ -12,15 +12,13 @@ const socket = io.connect('/');
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="community" element={<Community />} />
-                    <Route path="multiplayer" element={<Multiplayer socket={socket} />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="community" element={<Community />} />
+                <Route path="multiplayer" element={<Multiplayer socket={socket} />} />
+            </Route>
+        </Routes>
     );
 }
 
