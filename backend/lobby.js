@@ -6,7 +6,7 @@ export class Lobby {
     }
 
     join(userId) {
-        curUser = getUser(userId);
+        let curUser = getUser(userId);
         this.users.push(curUser);
     }
 

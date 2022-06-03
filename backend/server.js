@@ -90,9 +90,9 @@ httpServer.listen(port, () => {
 });
 
 function changeState(roomId) {
-    curRoom = rooms.find((r) => r.id === roomId);
+    let curRoom = rooms.find((r) => r.id === roomId);
 
-    statesFunctions = {
+    let statesFunctions = {
         0: () => {
             io.to(curRoom.id).emit("inputState");
             // use nested setTimeout because: 
