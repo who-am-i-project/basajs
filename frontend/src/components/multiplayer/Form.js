@@ -4,14 +4,15 @@ const Form = ({itemAdder, inputType}) => {
     const [inputValue, setNewInputValue] = useState('');
 
     return (
-        <div>
+        <div className="FormCenterer">
             <input 
+                className="form__input2"
                 value={inputValue} 
                 type='text' 
                 onChange={event => setNewInputValue(event.target.value)}
                 placeholder={`Enter your ${inputType}`}>
             </input>
-            <button onClick={_ => itemAdder({inputValue, setNewInputValue})}>Post a {inputType}</button>
+            <button className="button-4" id="submit_btn" onClick={_ => itemAdder({inputValue, setNewInputValue})}>Post a {inputType}</button>
         </div>
     )
 }

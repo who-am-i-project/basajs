@@ -25,12 +25,13 @@ const Login = ({ socket }) => {
             <center className="Wait-Text">Welcome to "Who am I?"</center>
             <div className="Form">
                 <input
+                    id="FormInput"
                     className="form__input"
                     placeholder="Input your user name"
                     value={username}
                     onChange={(e) => setUserName(e.target.value)}
                 />
-                <button className="button-4" onClick={joinGame}>Join</button>
+                <button id="FormButton" className="button-4" id="submit_btn" onClick={joinGame}>Join</button>
             </div>
         </div>
     );

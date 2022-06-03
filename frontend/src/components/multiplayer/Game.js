@@ -15,7 +15,7 @@ const Game = ({socket}) => {
                 inputType: inputType.type,
             }
 
-            if (inputType.type === 'question') {
+            if (inputType.type === 'Question') {
                 setAllQuestions([...allQuestions, newUserInput]);
             } else {
                 setAllGuesses([...allGuesses, newUserInput]);
@@ -26,7 +26,7 @@ const Game = ({socket}) => {
     }
 
     return (
-        <div>
+        <div className="Content">
             <UserSpace 
                 lists={{questions: allQuestions, guesses: allGuesses}}
                 itemAdder={addNewItem} 

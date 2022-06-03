@@ -28,9 +28,9 @@ const UserSpace = ({lists, itemAdder, inputProps }) => {
     const renderForm = () => {
         if (inputProps.type.length === 0) {
             return (
-                <div>
-                    <button onClick={_ => inputProps.typeSetter({ type: 'question' })}>Ask a question</button>
-                    <button onClick={_ => inputProps.typeSetter({ type: 'guess' })}>Guess</button>
+                <div className="ButtonsWrapper">
+                    <button className="button-3" onClick={_ => inputProps.typeSetter({ type: 'Question' })}>Ask a question</button>
+                    <button className="button-3" onClick={_ => inputProps.typeSetter({ type: 'Guess' })}>Guess</button>
                 </div>
             )
         } else {
@@ -41,13 +41,12 @@ const UserSpace = ({lists, itemAdder, inputProps }) => {
     }
 
     return (
-        <div>
+        <div className="GameInfo">
             {
                 renderForm()
             }
-            <ItemList list={lists.questions} inputType={'questions'} />
-            <hr />
-            <ItemList list={lists.guesses} inputType={'guesses'} />
+            <ItemList list={lists.questions} inputType={'Questions'} />
+            <ItemList list={lists.guesses} inputType={'Guesses'} />
         </div>
     )
 }
