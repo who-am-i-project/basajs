@@ -2,8 +2,8 @@ import { User } from './user.js';
 
 const users = [];
 
-function addUser(id, username) {
-    let curUser = new User(id, username);
+function addUser(id, roomId, username) {
+    let curUser = new User(id, roomId, username);
     users.push(curUser);
     return curUser;
 }
