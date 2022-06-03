@@ -1,6 +1,6 @@
 // Write react application that creates a scoreboard
 import React from 'react';
-import '../styles/App.css';
+import 'styles/App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class App extends React.Component {
     }
   }
   render() {
-    const scoreboard = require('../scoreboard.json');
+    const scoreboard = require('scoreboard.json');
     let scoreboardInfo = JSON.parse(JSON.stringify(scoreboard));
     let scoreboardItems = scoreboardInfo.scoreboardItems;
 

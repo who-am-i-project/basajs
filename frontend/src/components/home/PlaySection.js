@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../styles/PlaySection.css'
+import 'styles/PlaySection.css'
 
 const PlaySection = (props) => {
     return (<div className='play-section'>

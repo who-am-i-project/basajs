@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import Game from "./Game.jsx";
-import Login from "./Login.jsx";
-import WaitingLobby from "./WaitingLobby.jsx";
-import MultiplayerContext from "./MultiplayerContext.jsx";
+import Game from "./Game.js";
+import Login from "./Login.js";
+import WaitingLobby from "./WaitingLobby.js";
+import MultiplayerContext from "./MultiplayerContext.js";
 
 
 const Multiplayer = ({ socket }) => {
