@@ -1,7 +1,7 @@
 import React from 'react';
 
-const InputItem = ({itemInfo, number}) => {
-    console.log({itemInfo, number})
+const InputItem = ({ itemInfo, number }) => {
+    console.log({ itemInfo, number })
     return (
         <div className='inputItem'>
             <div className='inputItem__content'>

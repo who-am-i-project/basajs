@@ -3,7 +3,7 @@ import React from 'react';
 // votes= {positiveCount: ..., negativeCount: ...}
 // question = {text:..., userName:..., id:...}
 // secretWord
-const OtherQuestion = ({yesHandler, noHandler, question}) => {
+const OtherQuestion = ({ yesHandler, noHandler, question }) => {
     return (
         <div>
             <div>

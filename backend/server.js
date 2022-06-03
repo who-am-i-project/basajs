@@ -66,10 +66,14 @@ io.on("connection", (socket) => {
     //user sending vote
     socket.on("vote", ({ questionId, voteType }) => {
         let curUser = getUser(socket.id);
-        io.to(curUser.roomId).emit("otherVote", {
+        let vote = {
             questionId: questionId,
-            voteType: voteType
-        });
+            voteType: voteType,
+            toThemselves: false
+        };
+        socket.broadcast.to(curUser.roomId).emit("otherVote", vote);
+        vote = { ...vote, toThemselves: true };
+        io.to(socket.id).emit("otherVote", vote);
     });
 
     //user sending guess

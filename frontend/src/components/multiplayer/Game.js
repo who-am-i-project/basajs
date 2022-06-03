@@ -33,7 +33,7 @@ const Game = ({ socket }) => {
         }
     }
 
-    useEffect(() => {
+    const setSockets = () => {
         socket.on('inputState', () => {
             console.log("Got inputState");
             setPhase("input");
@@ -47,51 +47,63 @@ const Game = ({ socket }) => {
             console.log(question);
             let questionWithVotes = { ...question, yes: 0, no: 0 };
             if (username === question.username) {
-                setPersonalQuestions([...personalQuestions, questionWithVotes]);
-                console.log(`Personal questions:`)
-                console.log(personalQuestions);
+                setPersonalQuestions((prevPersonalQuestions) => [...prevPersonalQuestions, questionWithVotes]);
             } else {
-                setOtherQuestions([...otherQuestions, questionWithVotes]);
-                console.log(`Other questions:`)
-                console.log(otherQuestions);
+                setOtherQuestions((prevOtherQuestions) => [...otherQuestions, questionWithVotes]);
             }
         });
         socket.on('guessResult', ({ correct, hp, text }) => {
             console.log("Got guessResult");
             setHP(hp);
-            setPersonalGuesses([...personalGuesses, { correct, text }]);
+            setPersonalGuesses((prevPersonalGuesses) => [...prevPersonalGuesses, { correct, text }]);
         });
         socket.on('otherVote', (vote) => {
             console.log("Got otherVote")
-            console.log(`personalQuestions: ${personalQuestions}`);
-            console.log(`otherQuestions: ${otherQuestions}`);
-            console.log(`personalGuesses: ${personalGuesses}`);
-            let question = null;
-            if (personalQuestions.length > 0 && vote.questionId === personalQuestions[personalQuestions.length - 1].questionId) {
-                let newPersonalQuestions = [...personalQuestions];
-                question = newPersonalQuestions[personalQuestions.length - 1];
-                if (vote.voteType === 'positive') {
-                    question.yes += 1;
-                } else {
-                    question.no += 1;
-                }
-                setPersonalGuesses(newPersonalQuestions);
+            if (vote.toThemselves) {
+                setPersonalQuestions((prevPersonalQuestions) => {
+                    console.log(`personalQuestions:`);
+                    console.log(prevPersonalQuestions);
+                    let newPersonalQuestions = [...prevPersonalQuestions];
+                    let question = newPersonalQuestions[prevPersonalQuestions.length - 1];
+                    if (vote.voteType === 'positive') {
+                        question.yes += 1;
+                    } else {
+                        question.no += 1;
+                    }
+                    return newPersonalQuestions;
+                });
             } else {
-                let newOtherQuestions = [...otherQuestions];
-                question = newOtherQuestions.find((question) => question.questionId === vote.questionId);
-                if (vote.voteType === 'positive') {
-                    question.yes += 1;
-                } else {
-                    question.no += 1;
-                }
-                setOtherQuestions(newOtherQuestions);
+                setOtherQuestions((prevOtherQuestions) => {
+                    console.log(`otherQuestions:`);
+                    console.log(prevOtherQuestions);
+                    let newOtherQuestions = [...prevOtherQuestions];
+                    let question = newOtherQuestions.find((question) => question.questionId === vote.questionId);
+                    if (vote.voteType === 'positive') {
+                        question.yes += 1;
+                    } else {
+                        question.no += 1;
+                    }
+                    return newOtherQuestions;
+                });
             }
         });
         socket.on("endState", (roomId) => {
             console.log("Got endState");
             socket.emit("leaveRoom", roomId);
         });
-    }, []);
+    }
+
+    useEffect(setSockets, [otherQuestions, personalGuesses, personalQuestions, socket, username]);
+
+    useEffect(() => {
+        console.log(`Personal questions:`)
+        console.log(personalQuestions);
+    }, [personalQuestions]);
+
+    useEffect(() => {
+        console.log(`Other questions:`);
+        console.log(otherQuestions);
+    }, [otherQuestions]);
 
     return (
         <div>
