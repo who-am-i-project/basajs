@@ -34,11 +34,14 @@ io.on("connection", (socket) => {
         lobby.join(curUser.id);
 
         socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord);
-        socket.emit("joined");
 
         if (lobby.size() >= roomCapacity) {
             let curRoom = new Room(`gameRoom${roomId}`, lobby.users);
             rooms.push(curRoom);
+
+            lobby.users.forEach((user) => {
+                io.to(user.id).emit("joined");
+            });
 
             lobby.clear();
 

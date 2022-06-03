@@ -10,7 +10,7 @@ const Login = ({ socket }) => {
         if (username !== "") {
             socket.emit("joinGame", { username });
             setIsWaiting(true);
-            socket.on("gameJoined", () => {
+            socket.on("joined", () => {
                 setIsInGameRoom(true);
                 setIsWaiting(false);
             });
