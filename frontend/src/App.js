@@ -3,19 +3,22 @@ import './styles/App.css'
 import { Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 
-import LoginPage from './components/Multiplayer';
-import MainPage from "./components/MainPage";
+import Community from './components/community/Community';
+import Home from "./components/home/Home";
+import Multiplayer from "./components/multiplayer/Multiplayer";
+import Layout from "./components/Layout";
 
 const socket = io.connect('/');
 
 function App() {
     return (
-        <div className="App"> 
-            <Routes>
-                <Route path='/' element={<MainPage />}/>
-                <Route path='/multiplayer' element={<LoginPage socket={socket} />} />
-            </Routes>
-        </div>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="community" element={<Community />} />
+                <Route path="multiplayer" element={<Multiplayer socket={socket} />} />
+            </Route>
+        </Routes>
     );
 }
 
