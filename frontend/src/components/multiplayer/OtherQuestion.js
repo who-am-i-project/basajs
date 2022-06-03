@@ -5,21 +5,22 @@ import React from 'react';
 // secretWord
 const OtherQuestion = ({ yesHandler, noHandler, question }) => {
     return (
-        <div>
+        <div className="RoundSection">
             <div>
-                <p>{question.text}</p>
-                <p>By {question.username}</p>
+                <p>{question.text}<span className="dimmed"> by {question.username}</span></p>
                 {
                     question.secretWord !== "" ? `(${question.secretWord})` : null
                 }
             </div>
-            <div>
-                <h3>Votes</h3>
-                <p>Yes: {question.yes}</p>
-                <p>No: {question.no}</p>
+            <div className="VoteWrapper">
+                <div className="itemHeader">Votes</div>
+                <div className="YNStat">
+                    <p>Yes: {question.yes}</p>
+                    <p>No: {question.no}</p>
+                </div>
             </div>
-            <button onClick={yesHandler}>Yes</button>
-            <button onClick={noHandler}>No</button>
+            <button className='button-4' onClick={yesHandler}>Yes</button>
+            <button className='button-4' onClick={noHandler}>No</button>
         </div>
     )
 };

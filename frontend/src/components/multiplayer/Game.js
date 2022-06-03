@@ -22,7 +22,6 @@ const Game = ({ socket }) => {
                 body: inputValue,
                 inputType: inputType.type,
             }
-
             if (inputType.type === 'question') {
                 socket.emit("question", inputValue);
             } else {
@@ -106,7 +105,7 @@ const Game = ({ socket }) => {
     }, [otherQuestions]);
 
     return (
-        <div>
+        <div className="Content">
             <UserSpace
                 personalQuestions={personalQuestions}
                 personalGuesses={personalGuesses}
@@ -116,7 +115,7 @@ const Game = ({ socket }) => {
                 inputProps={{ type: inputType.type, typeSetter: setInputType }}
             />
             <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
-            <div>{hp}</div>
+            <div className="HPSection">HP: {hp}</div>
         </div>
     );
 }

@@ -53,32 +53,30 @@ class App extends React.Component {
     });
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <div className="Scoreboard-wrapper">
-            <div className="Header">Scoreboard</div>
-            <div className="Scoreboard">
-              <div className="Scoreboard-body">{scoreboardDivs}</div>
-            </div>
+      <div className="App-header">
+        <div className="Scoreboard-wrapper">
+          <div className="Header">Scoreboard</div>
+          <div className="Scoreboard">
+            <div className="Scoreboard-body">{scoreboardDivs}</div>
           </div>
-          <div className="NewsAndEvent-wrapper">
-            <div className="Header">NEWS AND EVENT</div>
-            <div className="NewsAndEvent">
-              <ul>
-                <li>
-                  <b>NEWS1 TITLE: </b>
-                  <span>NEWS1 DESCRIPTION</span>
-                </li>
-                <li>
-                  <b>NEWS2 TITLE: </b>
-                  <span>NEWS2 DESCRIPTION</span>
-                </li>
-                <li>
-                  <b>EVENT1 TITLE: </b>
-                  <span>EVENT1 DESCRIPTION</span>
-                </li>
-              </ul>
-            </div>
+        </div>
+        <div className="NewsAndEvent-wrapper">
+          <div className="Header">NEWS AND EVENT</div>
+          <div className="NewsAndEvent">
+            <ul>
+              <li>
+                <b>NEWS1 TITLE: </b>
+                <span>NEWS1 DESCRIPTION</span>
+              </li>
+              <li>
+                <b>NEWS2 TITLE: </b>
+                <span>NEWS2 DESCRIPTION</span>
+              </li>
+              <li>
+                <b>EVENT1 TITLE: </b>
+                <span>EVENT1 DESCRIPTION</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

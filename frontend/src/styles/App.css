@@ -1,34 +1,4 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#root {
-    display: flex;
-    justify-content: center;
-}
-
-.App {
-    width: 800px;
-}
-
-.itemList {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.inputItem {
-    display: flex;
-    padding: 15px;
-    border: 2px solid black;
-    margin-top: 15px;
-    justify-content: space-between;
-    align-items: center;
-    width: 400px;
-} */
-
-@font-face {
+  @font-face {
     font-family: 'Yugly';
     src: url(Yugly.ttf);
   }
@@ -36,6 +6,11 @@
   @font-face {
     font-family: 'PWChalk';
     src: url(PWChalk.ttf);
+  }
+
+  @font-face {
+    font-family: 'Effortless';
+    src: url(effortless.ttf);
   }
   
   * {
@@ -116,6 +91,15 @@
   
   .NewsAndEvent-wrapper {
     margin-top: 50px;
+  }
+
+  .Content {
+    width: 80%;
+    margin: 50px auto 0;
+    padding: 0 0 30px;
+    color: white;
+    font-size: 32px;
+    font-family: 'Effortless';
   }
   
   .Header {
@@ -330,4 +314,98 @@
   .button-4:active {
     background-color: #3ca2fc;
     box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+
+  .ButtonsWrapper {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    height: 80px;
+  }
+  .ButtonsWrapper button {
+    margin: 0 20px;
+  }
+  .GameInfo {
+    color: white;
+    font-family: 'Effortless';
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+
+  .itemList .inputItem {
+    padding-left: 20px;
+  }
+
+  .itemHeader {
+    margin-top: 20px;
+    font-family: 'Yugly';
+    font-size: 50px;
+  }
+
+  .FormCenterer {
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    height: 70px;
+    margin-bottom: 60px;
+  }
+
+  .form__input2 {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.2rem;
+    margin-right: 20px;
+    padding: 16px 25px;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    width: 40%;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    background-color: #3ca2fc;
+    display: inline-block;
+
+    box-shadow: inset 0 0 0 0 #3ca2fc,
+			0 0 0 0 #3ca2fc,
+			3px -3px 30px #1beabd, 
+			-3px 3px 30px #10abff;
+  }
+
+  .form__input2:placeholder-shown + .form__label {
+    opacity: 0;
+    background-color: #3ca2fc;
+    visibility: hidden;
+    -webkit-transform: translateY(-4rem);
+    transform: translateY(-4rem);
+  }
+  .VoteWrapper p {
+    padding-left: 20px;
+  }
+  .dimmed {
+    font-size: 25px;
+    color: #3ca2fc;
+  }
+  .HPSection {
+    font-family: 'PWChalk';
+    font-size: 50px;
+    margin-top: 50px;
+  }
+
+
+  .YNStat {
+    margin-bottom: 15px;
+  }
+  .YNStat p {
+    display: inline-block;
+    margin: 0 20px;
+  }
+  .RoundSection {
+    margin: 20px 0 100px 0;
+  }
+  .RoundSection button {
+    margin: 0 24px;
   }

@@ -14,8 +14,8 @@ const Counter = function () {
     return (
         <div>
             <h1>{likes}</h1>
-            <button onClick={increaseLikes}>Increment</button>
-            <button onClick={decreaseLikes}>DecreaseDecrement</button>
+            <button className='button-3' onClick={increaseLikes}>Increment</button>
+            <button className='button-3' onClick={decreaseLikes}>DecreaseDecrement</button>
         </div>
     )
 }

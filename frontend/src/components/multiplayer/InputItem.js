@@ -5,10 +5,10 @@ const InputItem = ({ itemInfo, number }) => {
     return (
         <div className='inputItem'>
             <div className='inputItem__content'>
-                <strong>{itemInfo.inputType} {number}</strong>
-                <div>
+                <strong>{itemInfo.inputType} {number}: </strong>
+                <span>
                     {itemInfo.body}
-                </div>
+                </span>
             </div>
         </div>
     )

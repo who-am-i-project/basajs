@@ -5,7 +5,7 @@ const ItemList = ({ list, inputType }) => {
     if (list.length) {
         return (
             <div className='itemList'>
-                <h3>{inputType}</h3>
+                <div className="itemHeader">{inputType}</div>
                 {list.map((item, index) =>
                     <InputItem
                         itemInfo={item}
@@ -15,7 +15,7 @@ const ItemList = ({ list, inputType }) => {
             </div>
         )
     } else {
-        return (<div>No {inputType} yet</div>)
+        return (<div className="itemHeader">No {inputType} Yet</div>)
     }
 }
 

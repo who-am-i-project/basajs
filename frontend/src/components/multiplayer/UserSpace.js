@@ -10,9 +10,9 @@ const UserSpace = ({ personalQuestions, personalGuesses, isEnabled, socket, item
     const renderForm = () => {
         if (inputProps.type.length === 0) {
             return (
-                <div>
-                    <button onClick={() => inputProps.typeSetter({ type: 'question' })}>Ask a question</button>
-                    <button onClick={() => inputProps.typeSetter({ type: 'guess' })}>Guess</button>
+                <div className="ButtonsWrapper">
+                    <button className="button-3" onClick={() => inputProps.typeSetter({ type: 'question' })}>Ask a question</button>
+                    <button className="button-3" onClick={() => inputProps.typeSetter({ type: 'guess' })}>Guess</button>
                 </div>
             )
         } else {
@@ -23,7 +23,7 @@ const UserSpace = ({ personalQuestions, personalGuesses, isEnabled, socket, item
     }
 
     return (
-        <div>
+        <div className="GameInfo">
             {
                 renderForm()
             }
