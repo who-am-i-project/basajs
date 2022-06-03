@@ -382,3 +382,30 @@
     -webkit-transform: translateY(-4rem);
     transform: translateY(-4rem);
   }
+  .VoteWrapper p {
+    padding-left: 20px;
+  }
+  .dimmed {
+    font-size: 25px;
+    color: #3ca2fc;
+  }
+  .HPSection {
+    font-family: 'PWChalk';
+    font-size: 50px;
+    margin-top: 50px;
+  }
+
+
+  .YNStat {
+    margin-bottom: 15px;
+  }
+  .YNStat p {
+    display: inline-block;
+    margin: 0 20px;
+  }
+  .RoundSection {
+    margin: 20px 0 100px 0;
+  }
+  .RoundSection button {
+    margin: 0 24px;
+  }

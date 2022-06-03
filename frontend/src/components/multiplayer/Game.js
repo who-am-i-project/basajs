@@ -103,7 +103,7 @@ const Game = ({ socket }) => {
                 inputProps={{ type: inputType.type, typeSetter: setInputType }}
             />
             <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
-            <div>{hp}</div>
+            <div className="HPSection">HP: {hp}</div>
         </div>
     );
 }
