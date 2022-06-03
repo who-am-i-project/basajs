@@ -1,8 +1,9 @@
 import React from 'react';
 import ItemList from './ItemList'
 import Form from './Form';
+import ChatList from './ChatList'
 
-const UserSpace = ({lists, itemAdder, inputProps }) => {
+const UserSpace = ({lists, itemAdder, inputProps,socket }) => {
     // const [questionsList, setUserQuestions] = useState([])
     // const [guessesList, setUserGuesses] = useState([])
     // const [inputType, setInputType] = useState({ type: '' })
@@ -35,7 +36,7 @@ const UserSpace = ({lists, itemAdder, inputProps }) => {
             )
         } else {
             return (
-                <Form itemAdder={itemAdder} inputType={inputProps.type} />
+                <Form itemAdder={itemAdder} inputType={inputProps.type} socket={socket} />
             )
         }
     }
@@ -48,6 +49,8 @@ const UserSpace = ({lists, itemAdder, inputProps }) => {
             <ItemList list={lists.questions} inputType={'questions'} />
             <hr />
             <ItemList list={lists.guesses} inputType={'guesses'} />
+            <hr/>
+            <ChatList list={lists.chatQuestions}/>
         </div>
     )
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import InputItem from './InputItem';
 
 const ItemList = ({list, inputType}) => {
+    console.log(list);
+
     if (list.length) {
         return (
             <div className='itemList'>

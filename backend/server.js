@@ -4,7 +4,7 @@ import { createServer } from 'http';
 
 import { addUser, getUser, removeUser } from "./manager.js";
 
-const port = 8000;
+const port = 3000;
 
 const app = express();
 const httpServer = createServer(app);
@@ -25,6 +25,7 @@ io.on("connection", (socket) => {
             username: curUser.username,
             text: `Welcome ${curUser.username}`,
         });
+        // console.log(`Welcome ${curUser.username}`);
 
         // displays a message to all other room users except joined user
         socket.broadcast.to('general').emit("message", {
@@ -35,15 +36,23 @@ io.on("connection", (socket) => {
     });
 
     //user sending question
-    socket.on("chat", (text) => {
+    socket.on("chat", (text, textType, socketID) => {
         //gets the user and the message sent
-        let curUser = getUser(socket.id);
-        io.to('general').emit("message", {
-            userId: curUser.id,
-            username: curUser.username,
-            text: text,
-        });
+        let curUser = getUser(socketID);
+        // io.to('general').emit("message", {
+        //     userId: curUser.id,
+        //     username: curUser.username,
+        //     text: text,
+        // });
+
+        // sent to everyone apart except the author
+        socket.broadcast.emit("receive-message", curUser.username, textType, text);
+
+        console.log(`${curUser.username} (id:${curUser.id}) asked ${text}, type ${textType}`);
+
     });
+
+    
 
     socket.on("leaveGame", () => {
         let curUser = removeUser(socket.id);

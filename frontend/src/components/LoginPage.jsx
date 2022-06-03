@@ -6,6 +6,7 @@ const LoginPage = ({ socket }) => {
 
     const sendUserData = () => {
         if (username !== "") {
+            // alert(username);
             socket.emit("joinGame", { username });
         } else {
             alert("Enter username!");
@@ -21,7 +22,7 @@ const LoginPage = ({ socket }) => {
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
             />
-            <Link to={`/game/${username}`}>
+            <Link to={`/game`}>
                 <button onClick={sendUserData}>Join</button>
             </Link>
         </div>

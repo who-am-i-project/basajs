@@ -14,7 +14,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path='/login' element={<LoginPage socket={socket} />} />
-                <Route path='/game/:username' element={<Game socket={socket} />} />
+                <Route path='/game' element={<Game socket={socket} />} />
                 {/* <Route path='/game/:username' element={<UserSpace socket={socket} />} /> */}
             </Routes>
         </div>
