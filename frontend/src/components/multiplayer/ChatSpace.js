@@ -1,17 +1,21 @@
+import OtherQuestion from "./OtherQuestion"
+
 const ChatSpace = ({ isEnabled, otherQuestions, socket }) => {
-    return <ul>
+    return <div>
         {isEnabled &&
             otherQuestions.map((question) =>
-                <Question
-                    key={questionId}
+                <OtherQuestion
+                    key={question.questionId}
                     question={question}
                     noHandler={() => {
-                        socket.emit("vote", { questionId, voteType: 'negative' });
+                        socket.emit("vote", { questionId: question.questionId, voteType: 'negative' });
                     }}
                     yesHandler={() => {
-                        socket.emit("vote", { questionId, voteType: 'positive' });
+                        socket.emit("vote", { questionId: question.questionId, voteType: 'positive' });
                     }}
                 />)
         }
-    </ul>;
-}
+    </div>;
+};
+
+export default ChatSpace;

@@ -16,7 +16,7 @@ const lobby = new Lobby();
 
 let roomId = 0;
 let questionId = 0;
-const roomCapacity = 3;
+const roomCapacity = 2;
 
 const rooms = [];
 

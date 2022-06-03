@@ -5,6 +5,8 @@ const MultiplayerContext = React.createContext({
     setIsInGameRoom: () => { },
     isWaiting: false,
     setIsWaiting: () => { },
+    username: '',
+    setUsername: () => { },
 });
 
 export default MultiplayerContext;

@@ -7,8 +7,8 @@ const Form = ({itemAdder, inputType}) => {
     return (
         <div>
             <input
-                value={inputValue} 
-                type='text' 
+                value={inputValue}
+                type='text'
                 onChange={event => setNewInputValue(event.target.value)}
                 placeholder={`Enter your ${inputType}`} />
             <button onClick={() => itemAdder({inputValue, setNewInputValue})}>Post a question</button>

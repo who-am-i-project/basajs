@@ -1,8 +1,12 @@
 import React from 'react';
 import ItemList from './ItemList'
 import Form from './Form';
+import MyQuestion from './MyQuestion'
+import MyGuess from './MyGuess'
 
-const UserSpace = ({personalQuestions, personalGuesses, isEnabled, socket, itemAdder, inputProps}) => {
+import { nanoid } from 'nanoid'
+
+const UserSpace = ({ personalQuestions, personalGuesses, isEnabled, socket, itemAdder, inputProps }) => {
     const renderForm = () => {
         if (inputProps.type.length === 0) {
             return (
@@ -23,9 +27,27 @@ const UserSpace = ({personalQuestions, personalGuesses, isEnabled, socket, itemA
             {
                 renderForm()
             }
-            <ItemList list={questions} inputType={'questions'} />
+            <div>
+                {isEnabled &&
+                    personalQuestions.map((question) =>
+                        <MyQuestion
+                            key={question.questionId}
+                            question={question}
+                        />)
+                }
+            </div>
+            <div>
+                {isEnabled &&
+                    personalGuesses.map((guess) =>
+                        <MyGuess
+                            key={nanoid()}
+                            guess={guess}
+                        />)
+                }
+            </div>
+            {/* <ItemList list={questions} inputType={'questions'} />
             <hr />
-            <ItemList list={guesses} inputType={'guesses'} />
+            <ItemList list={guesses} inputType={'guesses'} /> */}
         </div>
     )
 }

@@ -3,8 +3,7 @@ import { useState, useContext } from "react";
 import MultiplayerContext from "./MultiplayerContext";
 
 const Login = ({ socket }) => {
-    const [username, setUserName] = useState('');
-    const { setIsWaiting, setIsInGameRoom } = useContext(MultiplayerContext);
+    const { username, setUsername, setIsWaiting, setIsInGameRoom } = useContext(MultiplayerContext);
 
     const joinGame = () => {
         if (username !== "") {
@@ -28,7 +27,7 @@ const Login = ({ socket }) => {
                     className="form__input"
                     placeholder="Input your user name"
                     value={username}
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <button className="button-4" onClick={joinGame}>Join</button>
             </div>
