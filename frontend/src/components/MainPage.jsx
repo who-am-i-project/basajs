@@ -1,7 +1,12 @@
-import {Link} from "react-router-dom"
+import DescriptionSection from "./DescriptionSection"
+import PlaySection from "./PlaySection.jsx"
+import "../App.css";
 
 const MainPage = (props) => {
-    return <Link to='/multiplayer'><button>Play mutiplayer</button></Link>;
+    return <div className="App-header">
+        <PlaySection />
+        <DescriptionSection />
+    </div>;
 }
 
 export default MainPage;
