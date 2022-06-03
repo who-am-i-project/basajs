@@ -1,29 +1,188 @@
-* {
+@font-face {
+    font-family: 'Yugly';
+    src: url(Yugly.ttf);
+  }
+  
+  @font-face {
+    font-family: 'PWChalk';
+    src: url(PWChalk.ttf);
+  }
+  
+  * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-#root {
+  }
+  
+  #root {
+    min-height: 100vh;
+    background-image: url(Wallpapper2.jpg);
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f93b97;
+    background: rgb(249,59,151);
+    background: linear-gradient(90deg, rgba(249,59,151,1) 0%, rgba(161,249,59,1) 43%, rgba(161,249,59,1) 57%, rgba(249,59,151,1) 100%);
+  
     display: flex;
-    justify-content: center;
-}
-
-.App {
-    width: 800px;
-}
-
-.itemList {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.inputItem {
-    display: flex;
-    padding: 15px;
-    border: 2px solid black;
-    margin-top: 15px;
-    justify-content: space-between;
     align-items: center;
-    width: 400px;
-}
+    justify-content: center;
+  }
+  
+  nav li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #a1f93b;
+    color: black;
+    font-family: 'PWChalk';
+  }
+  
+  nav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  nav li a:hover {
+    background-color: #a1df1f;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #c52869;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  .NewsAndEvent-wrapper {
+    margin-top: 50px;
+  }
+  
+  .Header {
+    font-family: 'Yugly';
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .Scoreboard-wrapper {
+    margin-top: 80px;
+    padding: 20px 150px;
+    border: 8px solid #aa6c01;
+    border-image: linear-gradient(to bottom, rgba(67,255,248,1), rgba(250,6,255,1)) 1;
+    border-radius: 5px;
+    font-family: 'PWChalk';
+    font-size: 30px;
+  }
+  
+  .NewsAndEvent-wrapper {
+    margin-top: 100px;
+  }
+  
+  .NewsAndEvent {
+    font-family: 'PWChalk';
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .play-section {
+    margin: 100px 0;
+  }
+  
+  .button-3 {
+    appearance: none;
+    background-color: #3ca2fc;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Yugly';
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 16px 26px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+  
+  .button-3:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .button-3:hover {
+    background-color: #3181c6;
+  }
+  
+  .button-3:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+  }
+  
+  .button-3:disabled {
+    background-color: #3ca2fc;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+  }
+  
+  .button-3:active {
+    background-color: #3ca2fc;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+  
