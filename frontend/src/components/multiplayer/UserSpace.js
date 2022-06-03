@@ -1,36 +1,18 @@
 import React from 'react';
 import ItemList from './ItemList'
 import Form from './Form';
+import MyQuestion from './MyQuestion'
+import MyGuess from './MyGuess'
 
-const UserSpace = ({lists, itemAdder, inputProps }) => {
-    // const [questionsList, setUserQuestions] = useState([])
-    // const [guessesList, setUserGuesses] = useState([])
-    // const [inputType, setInputType] = useState({ type: '' })
+import { nanoid } from 'nanoid'
 
-    // const addNewItem = ({ inputValue, setNewInputValue }) => {
-    //     if (inputValue) {
-    //         const newUserInput = {
-    //             id: Date.now(),
-    //             body: inputValue,
-    //             inputType: inputType.type,
-    //         }
-
-    //         if (inputType.type === 'question') {
-    //             setUserQuestions([...questionsList, newUserInput]);
-    //         } else {
-    //             setUserGuesses([...guessesList, newUserInput]);
-    //         }
-    //         setNewInputValue('');
-    //         setInputType({ type: '' });
-    //     }
-    // }
-
+const UserSpace = ({ personalQuestions, personalGuesses, isEnabled, socket, itemAdder, inputProps }) => {
     const renderForm = () => {
         if (inputProps.type.length === 0) {
             return (
                 <div className="ButtonsWrapper">
-                    <button className="button-3" onClick={_ => inputProps.typeSetter({ type: 'Question' })}>Ask a question</button>
-                    <button className="button-3" onClick={_ => inputProps.typeSetter({ type: 'Guess' })}>Guess</button>
+                    <button className="button-3" onClick={() => inputProps.typeSetter({ type: 'question' })}>Ask a question</button>
+                    <button className="button-3" onClick={() => inputProps.typeSetter({ type: 'guess' })}>Guess</button>
                 </div>
             )
         } else {
@@ -45,8 +27,27 @@ const UserSpace = ({lists, itemAdder, inputProps }) => {
             {
                 renderForm()
             }
-            <ItemList list={lists.questions} inputType={'Questions'} />
-            <ItemList list={lists.guesses} inputType={'Guesses'} />
+            <div>
+                {isEnabled &&
+                    personalQuestions.map((question) =>
+                        <MyQuestion
+                            key={question.questionId}
+                            question={question}
+                        />)
+                }
+            </div>
+            <div>
+                {isEnabled &&
+                    personalGuesses.map((guess) =>
+                        <MyGuess
+                            key={nanoid()}
+                            guess={guess}
+                        />)
+                }
+            </div>
+            {/* <ItemList list={questions} inputType={'questions'} />
+            <hr />
+            <ItemList list={guesses} inputType={'guesses'} /> */}
         </div>
     )
 }

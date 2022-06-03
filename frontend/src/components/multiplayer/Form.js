@@ -1,20 +1,21 @@
 import React, {useState} from "react";
+import { Socket } from "socket.io-client";
 
 const Form = ({itemAdder, inputType}) => {
     const [inputValue, setNewInputValue] = useState('');
 
     return (
         <div className="FormCenterer">
-            <input 
+            <input
                 className="form__input2"
-                value={inputValue} 
-                type='text' 
+                value={inputValue}
+                type='text'
                 onChange={event => setNewInputValue(event.target.value)}
-                placeholder={`Enter your ${inputType}`}>
-            </input>
-            <button className="button-4" id="submit_btn" onClick={_ => itemAdder({inputValue, setNewInputValue})}>Post a {inputType}</button>
+                placeholder={`Enter your ${inputType}`} />
+            <button className="button-4" onClick={() => itemAdder({inputValue, setNewInputValue})}>Post a question</button>
+            <button className="button-4" onClick={() => itemAdder({inputValue, setNewInputValue})}>Guess</button>
         </div>
-    )
+    );
 }
 
 export default Form;
