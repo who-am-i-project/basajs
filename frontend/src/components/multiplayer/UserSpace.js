@@ -2,7 +2,7 @@ import React from 'react';
 import ItemList from './ItemList'
 import Form from './Form';
 
-const UserSpace = ({lists, itemAdder, inputProps }) => {
+const UserSpace = ({lists, itemAdder, inputProps, socket}) => {
     // const [questionsList, setUserQuestions] = useState([])
     // const [guessesList, setUserGuesses] = useState([])
     // const [inputType, setInputType] = useState({ type: '' })
