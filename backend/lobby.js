@@ -3,8 +3,6 @@ import { addUser, getUser, removeUser } from "./user_manager.js";
 export class Lobby {
     constructor() {
         this.users = [];
-        this.secretWords = ['apple', 'banana', 'elephant'];
-        this.initHp = 5;
     }
 
     join(userId) {
@@ -22,12 +20,5 @@ export class Lobby {
 
     clear() {
         this.users = [];
-    }
-
-    initPlayers() {
-        this.users.forEach((u) => {
-            u.secretWord = this.secretWords[Math.floor(Math.random() * this.secretWords.length)];
-            u.hp = this.initHp;
-        });
     }
 }

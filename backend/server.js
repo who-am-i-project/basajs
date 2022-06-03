@@ -32,14 +32,12 @@ io.on("connection", (socket) => {
         socket.join(`gameRoom${roomId}`);
         lobby.join(curUser.id);
 
+        socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord);
+        socket.emit("joined");
+
         if (lobby.size() >= roomCapacity) {
-            lobby.initPlayers();
             let curRoom = new Room(`gameRoom${roomId}`, lobby.users);
             rooms.push(curRoom);
-
-            lobby.users.forEach((user) => {
-                io.to(user.id).emit("gameJoined");
-            });
 
             lobby.clear();
 
@@ -50,10 +48,9 @@ io.on("connection", (socket) => {
     });
 
     //user sending question
-    socket.on("sendQuestion", (text) => {
+    socket.on("question", (text) => {
         let curUser = getUser(socket.id);
         io.to(curUser.roomId).emit("otherQuestion", {
-            userId: curUser.id,
             username: curUser.username,
             text: text,
         });
@@ -69,11 +66,11 @@ io.on("connection", (socket) => {
     });
 
     //user sending guess
-    socket.on("sendGuess", (text) => {
+    socket.on("guess", (text) => {
         let curUser = getUser(socket.id);
         if (curUser.secretWord === text) {
-            socket.emit("guessResult", { correct: true, hp: curUser.hp });
             curUser.won = true;
+            socket.emit("guessResult", { correct: true, hp: curUser.hp });
         } else {
             curUser.hp--;
             socket.emit("guessResult", { correct: false, hp: curUser.hp });
@@ -82,10 +79,6 @@ io.on("connection", (socket) => {
 
     socket.on("leaveRoom", (roomId) => {
         socket.leave(roomId);
-    });
-
-    socket.on("leaveGame", () => {
-        let curUser = removeUser(socket.id);
     });
 });
 
@@ -115,7 +108,7 @@ function changeState(roomId) {
                 io.to(curRoom.id).emit("endState", curRoom.id);
             }
             else {
-                io.to(curRoom.id).emit("votingState");
+                io.to(curRoom.id).emit("voteState");
                 setTimeout(changeState, 30000, roomId);
                 curRoom.state = 0;
             }
