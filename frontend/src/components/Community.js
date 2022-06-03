@@ -1,6 +1,6 @@
 // Write react application that creates a scoreboard
 import React from 'react';
-import '../App.css';
+import '../styles/App.css';
 
 class App extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import DescriptionSection from "./DescriptionSection"
 import PlaySection from "./PlaySection.jsx"
-import "../App.css";
+import "../styles/App.css";
 
 const MainPage = (props) => {
     return <div className="App-header">

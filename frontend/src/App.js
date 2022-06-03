@@ -1,11 +1,12 @@
 import React from "react";
 import './styles/App.css'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import io from "socket.io-client";
 
 import Community from './components/Community';
 import Home from "./components/MainPage";
 import Multiplayer from "./components/Multiplayer";
+import Layout from "./components/Layout";
 
 const socket = io.connect('/');
 
