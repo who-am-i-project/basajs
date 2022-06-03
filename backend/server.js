@@ -58,6 +58,7 @@ io.on("connection", (socket) => {
             questionId: questionId,
             username: curUser.username,
             text: text,
+            secretWord: curUser.secretWord
         });
         questionId++;
     });
@@ -76,10 +77,10 @@ io.on("connection", (socket) => {
         let curUser = getUser(socket.id);
         if (curUser.secretWord === text) {
             curUser.won = true;
-            socket.emit("guessResult", { correct: true, hp: curUser.hp });
+            socket.emit("guessResult", { correct: true, hp: curUser.hp, text });
         } else {
             curUser.hp--;
-            socket.emit("guessResult", { correct: false, hp: curUser.hp });
+            socket.emit("guessResult", { correct: false, hp: curUser.hp, text });
         }
     });
 

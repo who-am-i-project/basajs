@@ -11,8 +11,8 @@ const Form = ({itemAdder, inputType}) => {
                 type='text' 
                 onChange={event => setNewInputValue(event.target.value)}
                 placeholder={`Enter your ${inputType}`} />
-            <button onClick={_ => itemAdder({inputValue, setNewInputValue})}>Post a question</button>
-            <button onClick={() => {socket.emit("guess")}}>Guess</button>
+            <button onClick={() => itemAdder({inputValue, setNewInputValue})}>Post a question</button>
+            <button onClick={() => itemAdder({inputValue, setNewInputValue})}>Guess</button>
         </div>
     );
 }

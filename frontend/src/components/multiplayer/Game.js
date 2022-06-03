@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
 import UserSpace from './UserSpace'
 
 const Game = ({ socket }) => {
-    const [allQuestions, setAllQuestions] = useState([]);
-    const [allGuesses, setAllGuesses] = useState([]);
+    const [personalQuestions, setPersonalQuestions] = useState([]);
+    const [personalGuesses, setPersonalGuesses] = useState([]);
     const [phase, setPhase] = useState('null');
     const [otherQuestions, setOtherQuestions] = useState([]);
+    const [inputType, setInputType] = useState({ type: '' })
+    const [hp, setHP] = useState(null);
 
     const addNewItem = ({ inputValue, setNewInputValue }) => {
         if (inputValue) {
@@ -17,9 +20,9 @@ const Game = ({ socket }) => {
             }
 
             if (inputType.type === 'question') {
-                setAllQuestions([...allQuestions, newUserInput]);
+                socket.emit("question", inputValue);
             } else {
-                setAllGuesses([...allGuesses, newUserInput]);
+                socket.emit("guess", inputValue);
             }
             setNewInputValue('');
             setInputType({ type: '' });
@@ -33,28 +36,50 @@ const Game = ({ socket }) => {
         socket.on('voteState', () => {
             setPhase("vote");
         });
-        socket.on('otherQuestions', (newQuestion) => {
-            setOtherQuestions({...otherQuestions, newQuestion});
+        socket.on('otherQuestion', (question) => {
+            questionWithVotes = {...question, yes: 0, no: 0};
+            if (username === question.username) {
+                setPersonalQuestions([...personalQuestions, questionWithVotes]);
+            } else {
+                setOtherQuestions([...otherQuestions, questionWithVotes]);
+            }
         });
-        socket.on('otherVote', (answers) => {
-            if (answers.questionId === )
-            setAllQuestions(...allQuestions, answers);
+        socket.on('guessResult', ({ correct, hp, text }) => {
+            setHP(hp);
+            setPersonalGuesses([...personalGuesses, { correct, hp, text }]);
         });
-        socket.on('guessResult', (correct, hp) => {
-
+        socket.on('otherVote', (vote) => {
+            let question = null;
+            if (personalQuestions && vote.questionId === personalQuestions[personalGuesses.length - 1].questionId) {
+                question = personalQuestions[personalGuesses.length - 1];
+            } else {
+                question = otherQuestions.find((question) => {question.questionId === vote.questionId});
+            }
+            if (vote.voteType === 'positive') {
+                question.yes += 1;
+            } else {
+                question.no += 1;
+            }
+        });
+        socket.on("endState", (roomId) => {
+            socket.emit("leaveRoom", roomId);
         });
     }, []);
 
     return (
         <div>
             <UserSpace
-                questions={allQuestions}
-                guesses={allGuesses}
+                personalQuestions={personalQuestions}
+                personalGuesses={personalGuesses}
                 isEnabled={phase === 'input'}
-                socket={socket} />
-            <ChatSpace isEnabled={phase === 'vote'} />
+                socket={socket}
+                itemAdder={addNewItem}
+                inputProps={inputType}
+            />
+            <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
+            <div>{hp}</div>
         </div>
-    )
+    );
 }
 
 export default Game;
