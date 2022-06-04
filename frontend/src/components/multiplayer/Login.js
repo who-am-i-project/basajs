@@ -30,7 +30,7 @@ const Login = ({ socket }) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <button id="FormButton" className="button-4" id="submit_btn" onClick={joinGame}>Join</button>
+                <button id="FormButton" className="button-4" onClick={joinGame}>Join</button>
             </div>
         </div>
     );

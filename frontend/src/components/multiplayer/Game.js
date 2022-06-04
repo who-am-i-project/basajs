@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
 import UserSpace from './UserSpace'
 import ChatSpace from './ChatSpace'
 import MultiplayerContext from './MultiplayerContext';
+import Timer from './Timer'
 
 const Game = ({ socket }) => {
     const [personalQuestions, setPersonalQuestions] = useState([]);
@@ -10,18 +10,13 @@ const Game = ({ socket }) => {
     const [phase, setPhase] = useState('null');
     const [otherQuestions, setOtherQuestions] = useState([]);
     const [inputType, setInputType] = useState({ type: '' })
-    const [hp, setHP] = useState(null);
+    const [hp, setHP] = useState(10);
+    const [phaseEndDate, setPhaseEndDate] = useState(new Date());
 
     const { username } = useContext(MultiplayerContext);
 
     const addNewItem = ({ inputValue, setNewInputValue }) => {
         if (inputValue) {
-            // todo: add user field
-            const newUserInput = {
-                id: Date.now(),
-                body: inputValue,
-                inputType: inputType.type,
-            }
             if (inputType.type === 'question') {
                 socket.emit("question", inputValue);
             } else {
@@ -35,10 +30,16 @@ const Game = ({ socket }) => {
     const setSockets = () => {
         socket.on('inputState', () => {
             console.log("Got inputState");
+            let newDate = new Date();
+            newDate.setTime(newDate.getTime() + 30 * Math.pow(10, 3));
+            setPhaseEndDate(newDate);
             setPhase("input");
         });
         socket.on('voteState', () => {
             console.log("Got voteState");
+            let newDate = new Date();
+            newDate.setTime(newDate.getTime() + 30 * Math.pow(10, 3));
+            setPhaseEndDate(newDate);
             setPhase("vote");
         });
         socket.on('otherQuestion', (question) => {
@@ -48,7 +49,7 @@ const Game = ({ socket }) => {
             if (username === question.username) {
                 setPersonalQuestions((prevPersonalQuestions) => [...prevPersonalQuestions, questionWithVotes]);
             } else {
-                setOtherQuestions((prevOtherQuestions) => [...otherQuestions, questionWithVotes]);
+                setOtherQuestions((prevOtherQuestions) => [...prevOtherQuestions, questionWithVotes]);
             }
         });
         socket.on('guessResult', ({ correct, hp, text }) => {
@@ -58,33 +59,36 @@ const Game = ({ socket }) => {
         });
         socket.on('otherVote', (vote) => {
             console.log("Got otherVote")
-            if (vote.toThemselves) {
-                setPersonalQuestions((prevPersonalQuestions) => {
-                    console.log(`personalQuestions:`);
-                    console.log(prevPersonalQuestions);
-                    let newPersonalQuestions = [...prevPersonalQuestions];
-                    let question = newPersonalQuestions[prevPersonalQuestions.length - 1];
-                    if (vote.voteType === 'positive') {
-                        question.yes += 1;
-                    } else {
-                        question.no += 1;
-                    }
-                    return newPersonalQuestions;
-                });
-            } else {
-                setOtherQuestions((prevOtherQuestions) => {
-                    console.log(`otherQuestions:`);
-                    console.log(prevOtherQuestions);
-                    let newOtherQuestions = [...prevOtherQuestions];
-                    let question = newOtherQuestions.find((question) => question.questionId === vote.questionId);
-                    if (vote.voteType === 'positive') {
-                        question.yes += 1;
-                    } else {
-                        question.no += 1;
-                    }
-                    return newOtherQuestions;
-                });
-            }
+            setPersonalQuestions((prevPersonalQuestions) => {
+                console.log(`personalQuestions:`);
+                console.log(prevPersonalQuestions);
+                let newPersonalQuestions = [...prevPersonalQuestions];
+                let question = newPersonalQuestions.find((question) => question.questionId === vote.questionId);
+                if (question === undefined) {
+                    return prevPersonalQuestions;
+                }
+                if (vote.voteType === 'positive') {
+                    question.yes += 1;
+                } else {
+                    question.no += 1;
+                }
+                return newPersonalQuestions;
+            });
+            setOtherQuestions((prevOtherQuestions) => {
+                console.log(`otherQuestions:`);
+                console.log(prevOtherQuestions);
+                let newOtherQuestions = [...prevOtherQuestions];
+                let question = newOtherQuestions.find((question) => question.questionId === vote.questionId);
+                if (question === undefined) {
+                    return prevOtherQuestions;
+                }
+                if (vote.voteType === 'positive') {
+                    question.yes += 1;
+                } else {
+                    question.no += 1;
+                }
+                return newOtherQuestions;
+            });
         });
         socket.on("endState", (roomId) => {
             console.log("Got endState");
@@ -92,20 +96,11 @@ const Game = ({ socket }) => {
         });
     }
 
-    useEffect(setSockets, [otherQuestions, personalGuesses, personalQuestions, socket, username]);
-
-    useEffect(() => {
-        console.log(`Personal questions:`)
-        console.log(personalQuestions);
-    }, [personalQuestions]);
-
-    useEffect(() => {
-        console.log(`Other questions:`);
-        console.log(otherQuestions);
-    }, [otherQuestions]);
+    useEffect(setSockets, []);
 
     return (
         <div className="Content">
+            <Timer targetDate={phaseEndDate} />
             <UserSpace
                 personalQuestions={personalQuestions}
                 personalGuesses={personalGuesses}

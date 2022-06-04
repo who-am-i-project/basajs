@@ -14,11 +14,11 @@ const UserSpace = ({ personalQuestions, personalGuesses, isEnabled, socket, item
                     <button className="button-3" onClick={() => inputProps.typeSetter({ type: 'question' })}>Ask a question</button>
                     <button className="button-3" onClick={() => inputProps.typeSetter({ type: 'guess' })}>Guess</button>
                 </div>
-            )
+            );
         } else {
             return (
                 <Form itemAdder={itemAdder} inputType={inputProps.type} />
-            )
+            );
         }
     }
 
