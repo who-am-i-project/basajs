@@ -9,37 +9,28 @@ const Game = ({ socket }) => {
     const [personalGuesses, setPersonalGuesses] = useState([]);
     const [phase, setPhase] = useState('null');
     const [otherQuestions, setOtherQuestions] = useState([]);
-    const [inputType, setInputType] = useState({ type: '' })
+    const [inputType, setInputType] = useState({ type: '' });
     const [hp, setHP] = useState(10);
     const [phaseEndDate, setPhaseEndDate] = useState(new Date());
+    const [isUserSpaceFormEnabled, setIsUserSpaceFormEnabled] = useState(false);
 
-    const { username } = useContext(MultiplayerContext);
-
-    const addNewItem = ({ inputValue, setNewInputValue }) => {
-        if (inputValue) {
-            if (inputType.type === 'question') {
-                socket.emit("question", inputValue);
-            } else {
-                socket.emit("guess", inputValue);
-            }
-            setNewInputValue('');
-            setInputType({ type: '' });
-        }
-    }
+    const { username, setSocketConfiguredForGame, socketConfiguredForGame, roomFull } = useContext(MultiplayerContext);
 
     const setSockets = () => {
         socket.on('inputState', () => {
             console.log("Got inputState");
+            setOtherQuestions([]);
             let newDate = new Date();
             newDate.setTime(newDate.getTime() + 30 * Math.pow(10, 3));
-            setPhaseEndDate(newDate);
+            setPhaseEndDate(() => newDate);
             setPhase("input");
+            setIsUserSpaceFormEnabled(true);
         });
         socket.on('voteState', () => {
             console.log("Got voteState");
             let newDate = new Date();
             newDate.setTime(newDate.getTime() + 30 * Math.pow(10, 3));
-            setPhaseEndDate(newDate);
+            setPhaseEndDate(() => newDate);
             setPhase("vote");
         });
         socket.on('otherQuestion', (question) => {
@@ -54,6 +45,7 @@ const Game = ({ socket }) => {
         });
         socket.on('guessResult', ({ correct, hp, text }) => {
             console.log("Got guessResult");
+            console.log(`text: ${text}`);
             setHP(hp);
             setPersonalGuesses((prevPersonalGuesses) => [...prevPersonalGuesses, { correct, text }]);
         });
@@ -94,25 +86,46 @@ const Game = ({ socket }) => {
             console.log("Got endState");
             socket.emit("leaveRoom", roomId);
         });
+        setSocketConfiguredForGame(true);
     }
 
     useEffect(setSockets, []);
 
-    return (
-        <div className="Content">
-            <Timer targetDate={phaseEndDate} />
-            <UserSpace
-                personalQuestions={personalQuestions}
-                personalGuesses={personalGuesses}
-                isEnabled={phase === 'input'}
-                socket={socket}
-                itemAdder={addNewItem}
-                inputProps={{ type: inputType.type, typeSetter: setInputType }}
-            />
-            <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
-            <div className="HPSection">HP: {hp}</div>
-        </div>
-    );
+    const postQuestionHandler = (fieldValue, setFieldValue) => {
+        if (fieldValue) {
+            socket.emit("question", fieldValue);
+            setFieldValue('');
+            setIsUserSpaceFormEnabled(false);
+        }
+    }
+
+    const guessHandler = (fieldValue, setFieldValue) => {
+        if (fieldValue) {
+            socket.emit("guess", fieldValue);
+            setFieldValue('');
+            setIsUserSpaceFormEnabled(false);
+        }
+    }
+
+    if (socketConfiguredForGame && roomFull) {
+        return (
+            <div className="Content">
+                <Timer targetDate={phaseEndDate} />
+                <div className="HPSection">HP: {hp}</div>
+                <UserSpace
+                    personalQuestions={personalQuestions}
+                    personalGuesses={personalGuesses}
+                    isEnabled={phase === 'input'}
+                    isFormEnabled={isUserSpaceFormEnabled}
+                    socket={socket}
+                    postQuestionHandler={postQuestionHandler}
+                    guessHandler={guessHandler}
+                    inputProps={{ type: inputType.type, typeSetter: setInputType }}
+                />
+                <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
+            </div>
+        );
+    }
 }
 
 export default Game;

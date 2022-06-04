@@ -7,21 +7,24 @@ import MultiplayerContext from "./MultiplayerContext.js";
 
 
 const Multiplayer = ({ socket }) => {
-    const [isInGameRoom, setIsInGameRoom] = useState(false);
-    const [isWaiting, setIsWaiting] = useState(false);
+    const [isInLogin, setIsInLogin] = useState(true);
+    const [socketConfiguredForGame, setSocketConfiguredForGame] = useState(false);
+    const [roomFull, setRoomFull] = useState(false);
     const [username, setUsername] = useState('');
     return (
         <MultiplayerContext.Provider value={{
-            isInGameRoom,
-            setIsInGameRoom,
-            isWaiting,
-            setIsWaiting,
+            isInLogin,
+            setIsInLogin,
+            socketConfiguredForGame,
+            setSocketConfiguredForGame,
+            roomFull,
+            setRoomFull,
             username,
-            setUsername
+            setUsername,
         }}>
-            {!isInGameRoom && !isWaiting && <Login socket={socket} />}
-            {!isInGameRoom && isWaiting && <WaitingLobby />}
-            {isInGameRoom && <Game socket={socket} />}
+            {isInLogin && <Login socket={socket} />}
+            {!isInLogin && (!socketConfiguredForGame || !roomFull) && <WaitingLobby />}
+            {!isInLogin && <Game socket={socket} />}
         </MultiplayerContext.Provider>
     );
 };
