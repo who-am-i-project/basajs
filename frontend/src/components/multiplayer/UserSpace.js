@@ -9,7 +9,6 @@ const UserSpace = ({ personalQuestions, personalGuesses, postQuestionHandler, gu
     if (isEnabled) {
         return (
             <div className="GameInfo">
-                <Form isEnabled={isFormEnabled} postQuestionHandler={postQuestionHandler} guessHandler={guessHandler} />
                 <div>
                     {
                         personalQuestions.map((question) =>

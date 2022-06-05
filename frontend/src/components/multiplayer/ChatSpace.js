@@ -1,8 +1,8 @@
 import OtherQuestion from "./OtherQuestion"
 
 const ChatSpace = ({ isEnabled, otherQuestions, socket }) => {
-    if (isEnabled)
-        return <div>
+    return (
+        <div className="ChatSpace">
             {
                 otherQuestions.map((question) =>
                     <OtherQuestion
@@ -14,9 +14,11 @@ const ChatSpace = ({ isEnabled, otherQuestions, socket }) => {
                         yesHandler={() => {
                             socket.emit("vote", { questionId: question.questionId, voteType: 'positive' });
                         }}
+                        isDisabledOQ={false}
                     />)
             }
-        </div>;
+        </div>
+    );
 };
 
 export default ChatSpace;

@@ -5,14 +5,11 @@ import React from 'react';
 // secretWord
 const MyQuestion = ({ question }) => {
     return (
-        <div>
-            <div>
-                <p>{question.text}</p>
-            </div>
-            <div>
-                <h3>Votes</h3>
-                <p>Yes: {question.yes}</p>
-                <p>No: {question.no}</p>
+        <div className="QuestionBlock">
+            <div className="QuestionText">{question.text}</div>
+            <div className="Answers">
+                <div>Yes: {question.yes}</div>
+                <div>No: {question.no}</div>
             </div>
         </div>
     )

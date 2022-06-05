@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Form from './Form'
 import UserSpace from './UserSpace'
 import ChatSpace from './ChatSpace'
 import MultiplayerContext from './MultiplayerContext';
@@ -132,19 +133,21 @@ const Game = ({ socket }) => {
     if (socketConfiguredForGame && roomFull) {
         return (
             <div className="Content">
-                <Timer targetDate={phaseEndDate} />
-                <div className="HPSection">HP: {hp}</div>
-                <UserSpace
-                    personalQuestions={personalQuestions}
-                    personalGuesses={personalGuesses}
-                    isEnabled={phase === 'input' && !outOfGame}
-                    isFormEnabled={isUserSpaceFormEnabled}
-                    socket={socket}
-                    postQuestionHandler={postQuestionHandler}
-                    guessHandler={guessHandler}
-                    inputProps={{ type: inputType.type, typeSetter: setInputType }}
-                />
-                <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
+                <Timer targetDate={phaseEndDate} phase={phase} />
+                <div className="HPSection">YOUR HP: {hp}</div>
+                <Form isEnabled={isUserSpaceFormEnabled} postQuestionHandler={postQuestionHandler} guessHandler={guessHandler} />
+                <div className="Flexer">
+                    <UserSpace
+                        personalQuestions={personalQuestions}
+                        personalGuesses={personalGuesses}
+                        isEnabled={true}
+                        socket={socket}
+                        postQuestionHandler={postQuestionHandler}
+                        guessHandler={guessHandler}
+                        inputProps={{ type: inputType.type, typeSetter: setInputType }}
+                    />
+                    <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
+                </div>
             </div>
         );
     }

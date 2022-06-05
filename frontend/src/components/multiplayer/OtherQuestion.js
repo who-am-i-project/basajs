@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // votes= {positiveCount: ..., negativeCount: ...}
 // question = {text:..., userName:..., id:...}
 // secretWord
-const OtherQuestion = ({ yesHandler, noHandler, question }) => {
+const OtherQuestion = ({ yesHandler, noHandler, question, isDisabledOQ }) => {
     const [disabled, setDisabled] = useState(false);
 
     return (
@@ -21,8 +21,14 @@ const OtherQuestion = ({ yesHandler, noHandler, question }) => {
                     <p>No: {question.no}</p>
                 </div>
             </div>
-            <button className='button-4' disabled={disabled} onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
-            <button className='button-4' disabled={disabled} onClick={() => { noHandler(); setDisabled(true) }}>No</button>
+            <button
+                    className='button-4'
+                    disabled={disabled || isDisabledOQ}
+                    onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
+            <button
+                    className='button-4'
+                    disabled={disabled || isDisabledOQ}
+                    onClick={() => { noHandler(); setDisabled(true) }}>No</button>
         </div>
     )
 };

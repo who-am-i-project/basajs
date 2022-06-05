@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-const Timer = ({ targetDate }) => {
+const Timer = ({ targetDate, phase }) => {
 
     const timerId = useRef(null);
     const targetDateRef = useRef(null);
@@ -35,6 +35,10 @@ const Timer = ({ targetDate }) => {
     return (
         <div>
             <h2>{timer}</h2>
+            <div>
+                {phase === 'input' ? ' Input phase. Enter your question or guess!' : phase === 'vote' ? 'Vote!' : phase}
+            </div>
+
         </div>
     );
 }

@@ -20,7 +20,7 @@
   
   #root {
     min-height: 100vh;
-    background-image: url(Wallpapper2.jpg);
+    background-image: url(Wallpaper2.jpg);
   }
   
   nav ul {
@@ -332,6 +332,7 @@
     margin: 0 20px;
   }
   .GameInfo {
+    flex: 50%;
     color: white;
     font-family: 'Effortless';
     font-size: 30px;
@@ -350,6 +351,7 @@
   }
 
   .FormCenterer {
+    padding: 30px;
     justify-content: center;
     align-content: center;
     display: flex;
@@ -396,7 +398,7 @@
   .HPSection {
     font-family: 'PWChalk';
     font-size: 50px;
-    margin-top: 50px;
+    margin: 50px 0 30px;
   }
 
 
@@ -412,4 +414,28 @@
   }
   .RoundSection button {
     margin: 0 24px;
+  }
+
+  .Disabler {
+    background: #04a380;
+  }
+  .Disabler *{
+    opacity: 0.8;
+  }
+  .Flexer {
+    display: flex;
+  }
+  .ChatSpace {
+    flex: 50%;
+  }
+  .QuestionText {
+    font-size: 45px;
+  }
+  .Answers {}
+  .Answers div {
+    display: inline-block;
+    margin: 0 20px;
+  }
+  .QuestionBlock {
+    margin: 0 0 75px;
   }
