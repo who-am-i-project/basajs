@@ -3,15 +3,21 @@ import { useContext } from "react";
 import MultiplayerContext from "./MultiplayerContext";
 
 const Login = ({ socket }) => {
-    const { username, setUsername, setIsInLogin, setRoomFull } = useContext(MultiplayerContext);
+    const { username, setUsername, setIsInLogin, setRoomFull, setNumUsersWaiting } = useContext(MultiplayerContext);
 
     const joinGame = () => {
         if (username !== "") {
             socket.emit("joinGame", { username });
             setIsInLogin(false);
+            setNumUsersWaiting('?');
+            socket.on("otherJoined", (joinedUsername, secretWord, curTotalJoined) => {
+                setNumUsersWaiting(curTotalJoined);
+            });
             socket.on("joined", () => {
                 setRoomFull(true);
                 socket.off("joined");
+                socket.off("otherJoined");
+                setNumUsersWaiting(0);
             });
         } else {
             alert("Enter username!");

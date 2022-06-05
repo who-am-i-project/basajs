@@ -16,7 +16,7 @@ const lobby = new Lobby();
 
 let roomId = 0;
 let questionId = 0;
-const roomCapacity = 2;
+const roomCapacity = 3;
 
 const rooms = [];
 
@@ -33,7 +33,8 @@ io.on("connection", (socket) => {
         socket.join(`gameRoom${roomId}`);
         lobby.join(curUser.id);
 
-        socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord);
+        const curTotalJoined = lobby.size();
+        socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord, curTotalJoined);
 
         if (lobby.size() >= roomCapacity) {
             let curRoom = new Room(`gameRoom${roomId}`, lobby.users);

@@ -11,6 +11,8 @@ const Multiplayer = ({ socket }) => {
     const [socketConfiguredForGame, setSocketConfiguredForGame] = useState(false);
     const [roomFull, setRoomFull] = useState(false);
     const [username, setUsername] = useState('');
+    const [numUsersWaiting, setNumUsersWaiting] = useState(0);
+
     return (
         <MultiplayerContext.Provider value={{
             isInLogin,
@@ -21,6 +23,8 @@ const Multiplayer = ({ socket }) => {
             setRoomFull,
             username,
             setUsername,
+            numUsersWaiting,
+            setNumUsersWaiting
         }}>
             {isInLogin && <Login socket={socket} />}
             {!isInLogin && (!socketConfiguredForGame || !roomFull) && <WaitingLobby />}
