@@ -36,7 +36,7 @@ const Timer = ({ targetDate, phase }) => {
         <div>
             <h2>{timer}</h2>
             <div>
-                {phase === 'input' ? ' Input phase. Enter your question or guess!' : phase === 'vote' ? 'Vote!' : phase}
+                {phase === 'input' ? ' Input phase. Enter your question or guess!' : phase === 'vote' ? 'Vote phase!' : phase}
             </div>
 
         </div>
