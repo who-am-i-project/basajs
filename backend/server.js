@@ -2,9 +2,10 @@ import express from 'express';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 
-import { addUser, getUser, removeUser } from "./user_manager.js";
-import { Lobby } from './lobby.js';
-import { Room } from './room.js';
+import { addUser, getUser, removeUser } from "./src/user/user_manager.js";
+import { Lobby } from './src/room/lobby.js';
+import { Room } from './src/room/room.js';
+import { User } from './src/user/user.js';
 
 const port = 8000;
 
@@ -19,6 +20,7 @@ let questionId = 0;
 const roomCapacity = 3;
 
 const rooms = [];
+User.loadSecretWords();
 
 io.on("connection", (socket) => {
     console.log('user connected');
@@ -37,6 +39,7 @@ io.on("connection", (socket) => {
         socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord, curTotalJoined);
 
         if (lobby.size() >= roomCapacity) {
+
             let curRoom = new Room(`gameRoom${roomId}`, lobby.users);
             rooms.push(curRoom);
 
@@ -66,7 +69,7 @@ io.on("connection", (socket) => {
     socket.on("vote", ({ questionId, voteType }) => {
         let curUser = getUser(socket.id);
         console.log(`sending vote: ${questionId}, ${voteType}`);
-        io.to(curUser.roomId).emit("otherVote", {questionId, voteType});
+        io.to(curUser.roomId).emit("otherVote", { questionId, voteType });
     });
 
     //user sending guess
@@ -105,9 +108,10 @@ function changeState(roomId) {
         1: () => {
             if (curRoom.isEnd()) {
                 curRoom.state = 2;
+                curRoom.saveResults();
                 let idx = rooms.findIndex(r => r.id === curRoom.id);
                 if (idx !== -1) {
-                    return rooms.splice(idx, 1)[0];
+                    rooms.splice(idx, 1);
                 }
                 io.to(curRoom.id).emit("endState", curRoom.id);
             }
