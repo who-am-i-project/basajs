@@ -14,7 +14,7 @@ const Game = ({ socket }) => {
     const [inputType, setInputType] = useState({ type: '' });
     const [hp, setHP] = useState(10);
     const [phaseEndDate, setPhaseEndDate] = useState(new Date());
-    const [isUserSpaceFormEnabled, setIsUserSpaceFormEnabled] = useState(false);
+    const [isFormEnabled, setIsFormEnabled] = useState(false);
     const [outOfGame, setOutOfGame] = useState(false);
     const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const Game = ({ socket }) => {
             newDate.setTime(newDate.getTime() + 30 * Math.pow(10, 3));
             setPhaseEndDate(() => newDate);
             setPhase("input");
-            setIsUserSpaceFormEnabled(true);
+            setIsFormEnabled(true);
         });
         socket.on('voteState', () => {
             console.log("Got voteState");
@@ -36,6 +36,7 @@ const Game = ({ socket }) => {
             newDate.setTime(newDate.getTime() + 30 * Math.pow(10, 3));
             setPhaseEndDate(() => newDate);
             setPhase("vote");
+            setIsFormEnabled(false);
         });
         socket.on('otherQuestion', (question) => {
             console.log(`Got otherQuestion`);
@@ -118,7 +119,7 @@ const Game = ({ socket }) => {
         if (fieldValue) {
             socket.emit("question", fieldValue);
             setFieldValue('');
-            setIsUserSpaceFormEnabled(false);
+            setIsFormEnabled(false);
         }
     }
 
@@ -126,7 +127,7 @@ const Game = ({ socket }) => {
         if (fieldValue) {
             socket.emit("guess", fieldValue);
             setFieldValue('');
-            setIsUserSpaceFormEnabled(false);
+            setIsFormEnabled(false);
         }
     }
 
@@ -135,7 +136,7 @@ const Game = ({ socket }) => {
             <div className="Content">
                 <Timer targetDate={phaseEndDate} phase={phase} />
                 <div className="HPSection">YOUR HP: {hp}</div>
-                <Form isEnabled={isUserSpaceFormEnabled} postQuestionHandler={postQuestionHandler} guessHandler={guessHandler} />
+                <Form isEnabled={isFormEnabled && !outOfGame} postQuestionHandler={postQuestionHandler} guessHandler={guessHandler} />
                 <div className="Flexer">
                     <UserSpace
                         personalQuestions={personalQuestions}

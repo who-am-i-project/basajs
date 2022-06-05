@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from './Form';
 import MyQuestion from './MyQuestion';
 import MyGuess from './MyGuess';
 
