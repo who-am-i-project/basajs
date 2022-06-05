@@ -11,6 +11,7 @@ const Login = ({ socket }) => {
             setIsInLogin(false);
             socket.on("joined", () => {
                 setRoomFull(true);
+                socket.off("joined");
             });
         } else {
             alert("Enter username!");

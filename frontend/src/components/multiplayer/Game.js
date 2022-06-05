@@ -3,6 +3,7 @@ import UserSpace from './UserSpace'
 import ChatSpace from './ChatSpace'
 import MultiplayerContext from './MultiplayerContext';
 import Timer from './Timer'
+import { useNavigate } from 'react-router-dom';
 
 const Game = ({ socket }) => {
     const [personalQuestions, setPersonalQuestions] = useState([]);
@@ -13,10 +14,12 @@ const Game = ({ socket }) => {
     const [hp, setHP] = useState(10);
     const [phaseEndDate, setPhaseEndDate] = useState(new Date());
     const [isUserSpaceFormEnabled, setIsUserSpaceFormEnabled] = useState(false);
+    const [outOfGame, setOutOfGame] = useState(false);
+    const navigate = useNavigate();
 
     const { username, setSocketConfiguredForGame, socketConfiguredForGame, roomFull } = useContext(MultiplayerContext);
 
-    const setSockets = () => {
+    const setSocketListeners = () => {
         socket.on('inputState', () => {
             console.log("Got inputState");
             setOtherQuestions([]);
@@ -46,6 +49,9 @@ const Game = ({ socket }) => {
         socket.on('guessResult', ({ correct, hp, text }) => {
             console.log("Got guessResult");
             console.log(`text: ${text}`);
+            if (correct || hp <= 0) {
+                setOutOfGame(true);
+            }
             setHP(hp);
             setPersonalGuesses((prevPersonalGuesses) => [...prevPersonalGuesses, { correct, text }]);
         });
@@ -85,11 +91,27 @@ const Game = ({ socket }) => {
         socket.on("endState", (roomId) => {
             console.log("Got endState");
             socket.emit("leaveRoom", roomId);
+            navigate("/");
         });
         setSocketConfiguredForGame(true);
     }
 
-    useEffect(setSockets, []);
+    const resetSocketListeners = () => {
+        socket.off('inputState');
+        socket.off('voteState');
+        socket.off('otherQuestion');
+        socket.off('guessResult');
+        socket.off('otherVote');
+        socket.off('endState');
+    }
+
+    useEffect(() => {
+        setSocketListeners();
+        return () => {
+            resetSocketListeners();
+            socket.emit("leaveRoom");
+        };
+    }, []);
 
     const postQuestionHandler = (fieldValue, setFieldValue) => {
         if (fieldValue) {
@@ -115,7 +137,7 @@ const Game = ({ socket }) => {
                 <UserSpace
                     personalQuestions={personalQuestions}
                     personalGuesses={personalGuesses}
-                    isEnabled={phase === 'input'}
+                    isEnabled={phase === 'input' && !outOfGame}
                     isFormEnabled={isUserSpaceFormEnabled}
                     socket={socket}
                     postQuestionHandler={postQuestionHandler}
