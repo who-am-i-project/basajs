@@ -1,4 +1,9 @@
   @font-face {
+    font-family: 'DraftingMono';
+    src: url(DraftingMono.ttf);
+  }
+
+  @font-face {
     font-family: 'Yugly';
     src: url(Yugly.ttf);
   }
@@ -125,7 +130,7 @@
   }
   
   .NewsAndEvent {
-    font-family: 'Effortless';
+    font-family: 'DraftingMono';
     font-size: 30px;
     margin-bottom: 20px;
   }
@@ -420,7 +425,7 @@
     background: #04a380;
   }
   .Disabler *{
-    opacity: 0.8;
+    opacity: 0.5;
   }
   .Flexer {
     display: flex;
@@ -438,4 +443,7 @@
   }
   .QuestionBlock {
     margin: 0 0 75px;
+  }
+  .strikeThrough {
+    text-decoration: line-through;
   }

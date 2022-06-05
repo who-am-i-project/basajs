@@ -65,8 +65,9 @@ class App extends React.Component {
           <div className="NewsAndEvent">
             <ul>
               <li>
-                <b>First release</b>
-                <span>On Friday, 3rd June</span>
+                <b>First release: </b>
+                <span className="strikeThrough">On Friday, 3rd June</span>
+                <span> On Wednesday, 8th June</span>
               </li>
               <li>
                 <b>Source code: </b>
