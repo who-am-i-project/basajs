@@ -65,16 +65,12 @@ class App extends React.Component {
           <div className="NewsAndEvent">
             <ul>
               <li>
-                <b>NEWS1 TITLE: </b>
-                <span>NEWS1 DESCRIPTION</span>
+                <b>First release</b>
+                <span>On Friday, 3rd June</span>
               </li>
               <li>
-                <b>NEWS2 TITLE: </b>
-                <span>NEWS2 DESCRIPTION</span>
-              </li>
-              <li>
-                <b>EVENT1 TITLE: </b>
-                <span>EVENT1 DESCRIPTION</span>
+                <b>Source code: </b>
+                <span>Available on <a href="https://github.com/viktorpovazhuk/basajs">GitHub</a></span>
               </li>
             </ul>
           </div>

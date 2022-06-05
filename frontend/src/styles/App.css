@@ -90,6 +90,7 @@
   }
   
   .NewsAndEvent-wrapper {
+    font-family: 'Effortless';
     margin-top: 50px;
   }
 
@@ -124,9 +125,12 @@
   }
   
   .NewsAndEvent {
-    font-family: 'PWChalk';
+    font-family: 'Effortless';
     font-size: 30px;
     margin-bottom: 20px;
+  }
+  .NewsAndEvent li {
+    margin: 10px 0;
   }
   
   ul {
