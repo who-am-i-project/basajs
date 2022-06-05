@@ -8,11 +8,13 @@ $ git clone git@github.com:viktorpovazhuk/basajs.git
 Setup server:
 ```bash
 $ cd basajs/backend
-$ node src/server.js
+$ npm install
+$ node server.js
 ```
 
 Setup frontend:
 ```bash
 $ cd basajs/frontend
+# npm install
 $ npm start
 ```
