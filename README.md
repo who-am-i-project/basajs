@@ -15,6 +15,6 @@ $ node server.js
 Setup frontend:
 ```bash
 $ cd basajs/frontend
-# npm install
+$ npm install
 $ npm start
 ```
