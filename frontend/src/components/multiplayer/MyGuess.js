@@ -1,4 +1,4 @@
-const MyGuess = (guess) => {
+const MyGuess = ({ guess }) => {
     return <div>
         <div>
             {guess.text}

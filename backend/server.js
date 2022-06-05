@@ -16,7 +16,7 @@ const lobby = new Lobby();
 
 let roomId = 0;
 let questionId = 0;
-const roomCapacity = 2;
+const roomCapacity = 3;
 
 const rooms = [];
 
@@ -33,15 +33,14 @@ io.on("connection", (socket) => {
         socket.join(`gameRoom${roomId}`);
         lobby.join(curUser.id);
 
-        socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord);
+        const curTotalJoined = lobby.size();
+        socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord, curTotalJoined);
 
         if (lobby.size() >= roomCapacity) {
             let curRoom = new Room(`gameRoom${roomId}`, lobby.users);
             rooms.push(curRoom);
 
-            lobby.users.forEach((user) => {
-                io.to(user.id).emit("joined");
-            });
+            io.to(curUser.roomId).emit("joined");
 
             lobby.clear();
 
@@ -66,10 +65,8 @@ io.on("connection", (socket) => {
     //user sending vote
     socket.on("vote", ({ questionId, voteType }) => {
         let curUser = getUser(socket.id);
-        io.to(curUser.roomId).emit("otherVote", {
-            questionId: questionId,
-            voteType: voteType
-        });
+        console.log(`sending vote: ${questionId}, ${voteType}`);
+        io.to(curUser.roomId).emit("otherVote", {questionId, voteType});
     });
 
     //user sending guess

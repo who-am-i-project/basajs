@@ -1,13 +1,13 @@
 import React from 'react';
 import InputItem from './InputItem';
 
-const ItemList = ({list, inputType}) => {
+const ItemList = ({ list, inputType }) => {
     if (list.length) {
         return (
             <div className='itemList'>
                 <div className="itemHeader">{inputType}</div>
                 {list.map((item, index) =>
-                    <InputItem 
+                    <InputItem
                         itemInfo={item}
                         number={index + 1}
                         key={item.id}

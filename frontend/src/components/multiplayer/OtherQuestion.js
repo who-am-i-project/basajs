@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // votes= {positiveCount: ..., negativeCount: ...}
 // question = {text:..., userName:..., id:...}
 // secretWord
-const OtherQuestion = ({yesHandler, noHandler, question}) => {
+const OtherQuestion = ({ yesHandler, noHandler, question }) => {
+    const [disabled, setDisabled] = useState(false);
+
     return (
         <div className="RoundSection">
             <div>
@@ -19,8 +21,8 @@ const OtherQuestion = ({yesHandler, noHandler, question}) => {
                     <p>No: {question.no}</p>
                 </div>
             </div>
-            <button className='button-4' onClick={yesHandler}>Yes</button>
-            <button className='button-4' onClick={noHandler}>No</button>
+            <button className='button-4' disabled={disabled} onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
+            <button className='button-4' disabled={disabled} onClick={() => { noHandler(); setDisabled(true) }}>No</button>
         </div>
     )
 };
