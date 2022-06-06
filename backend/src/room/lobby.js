@@ -1,4 +1,4 @@
-import { addUser, getUser, removeUser } from "./user_manager.js";
+import { addUser, getUser, removeUser } from "../user/user_manager.js";
 
 export class Lobby {
     constructor() {
