@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "id": "NC9zoSBRaWSrQqLOAAAD",
+            "roomId": "gameRoom0",
+            "username": "v1",
+            "hp": 10,
+            "won": false,
+            "blocked": false,
+            "secretWord": "Frog"
+        },
+        {
+            "id": "_ystoFdA1y6D8hgiAAAB",
+            "roomId": "gameRoom0",
+            "username": "v2",
+            "hp": 10,
+            "won": false,
+            "blocked": false,
+            "secretWord": "Duck"
+        }
+    ]
+}
