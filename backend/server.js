@@ -7,7 +7,7 @@ import { Lobby } from './src/room/lobby.js';
 import { Room } from './src/room/room.js';
 import { User } from './src/user/user.js';
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const app = express();
 const httpServer = createServer(app);
