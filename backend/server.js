@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
         lobby.join(curUser.id);
 
         const curTotalJoined = lobby.size();
-        socket.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord, curTotalJoined);
+        io.to(curUser.roomId).emit("otherJoined", curUser.username, curUser.secretWord, curTotalJoined);
 
         if (lobby.size() >= roomCapacity) {
 
