@@ -6,6 +6,7 @@ import { addUser, getUser, removeUser } from "./src/user/user_manager.js";
 import { Lobby } from './src/room/lobby.js';
 import { Room } from './src/room/room.js';
 import { User } from './src/user/user.js';
+import { veryInsensitiveStringComparison } from './src/utils.js'
 
 const port = process.env.PORT || 8000;
 
@@ -82,7 +83,7 @@ io.on("connection", (socket) => {
     //user sending guess
     socket.on("guess", (text) => {
         let curUser = getUser(socket.id);
-        if (curUser.secretWord === text) {
+        if (veryInsensitiveStringComparison(curUser.secretWord, text)) {
             curUser.won = true;
             socket.emit("guessResult", { correct: true, hp: curUser.hp, text });
         } else {
@@ -97,11 +98,13 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
         const removedUser = removeUser(socket.id);
-        const removedUserFromLobby = lobby.remove(socket.id);
-        removedUser.hasDisconnected = true;
-        if (removedUserFromLobby !== undefined) {
-            const curTotalWaiting = lobby.size();
-            socket.to(removedUser.roomId).emit("otherLeftWaitingRoom", curTotalWaiting);
+        if (removedUser !== undefined) {
+            removedUser.hasDisconnected = true;
+            const removedUserFromLobby = lobby.remove(socket.id);
+            if (removedUserFromLobby !== undefined) {
+                const curTotalWaiting = lobby.size();
+                socket.to(removedUser.roomId).emit("otherLeftWaitingRoom", curTotalWaiting);
+            }
         }
     });
 });
