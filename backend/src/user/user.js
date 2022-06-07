@@ -1,13 +1,15 @@
-import { json } from "express";
 import * as fs from 'fs';
+import path, { dirname } from 'node:path';
+import {fileURLToPath} from 'url';
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export class User {
     static secretWords = []; // ['apple', 'banana', 'elephant'];
 
     static loadSecretWords() {
-        fs.readFile('data/words.json', 'utf8', (err, jsonData) => {
+        fs.readFile(path.join(__dirname, '../../data/words.json'), 'utf8', (err, jsonData) => {
             if (err) {
                 console.error(err);
                 return;

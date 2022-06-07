@@ -1,5 +1,10 @@
 import * as fs from 'fs';
-import {UserSpace} from '../user/user_space.js';
+import { UserSpace } from '../user/user_space.js';
+import path from 'node:path';
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export class Room {
     constructor(id, users) {
@@ -28,7 +33,7 @@ export class Room {
             users: this.users
         };
         let jsonData = JSON.stringify(jsonObject);
-        fs.writeFile(`results/${this.id}_results.json`, jsonData, 'utf8', function (err) {
+        fs.writeFile(path.join(__dirname, `../../results/${this.id}_results.json`), jsonData, 'utf8', function (err) {
             if (err) {
                 console.log("An error occured while writing results of game to file.");
                 return console.log(err);
