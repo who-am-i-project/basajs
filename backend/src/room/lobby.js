@@ -1,4 +1,4 @@
-import { addUser, getUser, removeUser } from "../user/user_manager.js";
+import { UserSpace } from '.././user/user_space.js';
 
 export class Lobby {
     constructor() {
@@ -6,7 +6,7 @@ export class Lobby {
     }
 
     join(userId) {
-        let curUser = getUser(userId);
+        let curUser = UserSpace.getUser(userId);
         this.users.push(curUser);
     }
 
