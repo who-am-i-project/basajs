@@ -2,14 +2,11 @@ import React from "react";
 import './styles/General.css'
 import './resource.js'
 import { Routes, Route } from "react-router-dom";
-import io from "socket.io-client";
 
 import Community from './components/community/Community';
 import Home from "./components/home/Home";
 import Multiplayer from "./components/multiplayer/Multiplayer";
 import Layout from "./components/Layout";
-
-const socket = io.connect('/');
 
 function App() {
     return (
@@ -17,7 +14,7 @@ function App() {
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="community" element={<Community />} />
-                <Route path="multiplayer" element={<Multiplayer socket={socket} />} />
+                <Route path="multiplayer" element={<Multiplayer />} />
             </Route>
         </Routes>
     );

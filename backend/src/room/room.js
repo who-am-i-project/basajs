@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import {UserSpace} from '../user/user_space.js';
 
 export class Room {
     constructor(id, users) {
@@ -37,8 +38,8 @@ export class Room {
     }
 
     removeUsersFromSpace() {
-        users.forEach(u => {
+        this.users.forEach(u => {
             UserSpace.removeUser(u.id);
-        })
+        });
     }
 }
