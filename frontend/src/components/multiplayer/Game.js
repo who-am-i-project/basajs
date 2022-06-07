@@ -43,7 +43,7 @@ const Game = ({ socket }) => {
             console.log(`Got otherQuestion`);
             console.log(question);
             let questionWithVotes = { ...question, yes: 0, no: 0 };
-            if (username === question.username) {
+            if (socket.id === question.userId) {
                 setPersonalQuestions((prevPersonalQuestions) => [...prevPersonalQuestions, questionWithVotes]);
             } else {
                 setOtherQuestions((prevOtherQuestions) => [...prevOtherQuestions, questionWithVotes]);
