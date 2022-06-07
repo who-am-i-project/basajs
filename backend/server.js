@@ -89,14 +89,14 @@ io.on("connection", (socket) => {
         if (veryInsensitiveStringComparison(curUser.secretWord, text)) {
             curUser.won = true;
             socket.emit("guessResult", { correct: true, hp: curUser.hp, text });
-            fs.readFile('../frontend/src/scoreboard.json', 'utf8', (err, data) => {
+            fs.readFile('./frontend/src/scoreboard.json', 'utf8', (err, data) => {
                 if (err) throw err;
                 let scoreboard = JSON.parse(data);
                 scoreboard.scoreboardItems.push({
                     name: curUser.username,
                     score: curUser.hp
                 });
-                fs.writeFile('../frontend/src/scoreboard.json', JSON.stringify(scoreboard), (err) => {
+                fs.writeFile('./frontend/src/scoreboard.json', JSON.stringify(scoreboard), (err) => {
                     if (err) throw err;
                 });
             });
