@@ -5,6 +5,7 @@ import ChatSpace from './ChatSpace'
 import MultiplayerContext from './MultiplayerContext';
 import Timer from './Timer'
 import { useNavigate } from 'react-router-dom';
+import '../../styles/Game.css';
 
 const Game = ({ socket }) => {
     const [personalQuestions, setPersonalQuestions] = useState([]);

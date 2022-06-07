@@ -30,16 +30,16 @@ const Login = ({ socket }) => {
     }
 
     return (
-        <div className="login-page">
-            <center className="Wait-Text">Welcome to "Who am I?"</center>
+        <div className="LoginPage">
+            <center className="WaitText">Welcome to "Who am I?"</center>
             <div className="Form">
                 <input
-                    className="form__input"
+                    className="FormInput"
                     placeholder="Input your user name"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <button className="button-4" onClick={joinGame}>Join</button>
+                <button className="buttonBlueHigher" onClick={joinGame}>Join</button>
             </div>
         </div>
     );

@@ -9,24 +9,21 @@ const OtherQuestion = ({ yesHandler, noHandler, question, isDisabledOQ }) => {
     return (
         <div className="RoundSection">
             <div>
-                <p>{question.text}<span className="dimmed"> by {question.username}</span></p>
-                {
-                    question.secretWord !== "" ? `(${question.secretWord})` : null
-                }
+                {question.text}<span className="dimmed"> by {question.username}</span>
+                <span className="secretWord">{ question.secretWord !== "" ? `(${question.secretWord})` : null }</span>
             </div>
             <div className="VoteWrapper">
-                <div className="itemHeader">Votes</div>
                 <div className="YNStat">
                     <p>Yes: {question.yes}</p>
                     <p>No: {question.no}</p>
                 </div>
             </div>
             <button
-                    className='button-4'
+                    className='buttonBlueHigher'
                     disabled={disabled || isDisabledOQ}
                     onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
             <button
-                    className='button-4'
+                    className='buttonBlueHigher'
                     disabled={disabled || isDisabledOQ}
                     onClick={() => { noHandler(); setDisabled(true) }}>No</button>
         </div>

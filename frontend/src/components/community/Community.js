@@ -1,6 +1,6 @@
 // Write react application that creates a scoreboard
 import React from 'react';
-import 'styles/App.css';
+import '../../styles/Community.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="NewsAndEvent-wrapper">
-          <div className="Header">NEWS AND EVENT</div>
+          <div className="Header">NEWS AND EVENTS</div>
           <div className="NewsAndEvent">
             <ul>
               <li>
