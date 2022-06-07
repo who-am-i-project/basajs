@@ -1,1 +1,31 @@
-{"users":[{"id":"SkRbZi1uqwwRjakQAAAB","roomId":"gameRoom0","username":"hygt","hp":10,"won":false,"hasDisconnected":true,"secretWord":"Horse"},{"id":"RV1XimTZMFe7SEISAAAJ","roomId":"gameRoom1","username":"bohdan","hp":10,"won":false,"hasDisconnected":true,"secretWord":"Donald Trump"},{"id":"Y2_V4pv9UrOD01-MAAAL","roomId":"gameRoom1","username":"taras","hp":10,"won":false,"hasDisconnected":true,"secretWord":"Cow"}]}
+{
+    "users": [
+        {
+            "id": "NLGDPMpdwcQ1qHO0AAAH",
+            "roomId": "gameRoom0",
+            "username": "v1",
+            "hp": 10,
+            "won": true,
+            "hasDisconnected": false,
+            "secretWord": "lion"
+        },
+        {
+            "id": "6Z0vS3LkKHOIJHaRAAAD",
+            "roomId": "gameRoom0",
+            "username": "v2",
+            "hp": 10,
+            "won": true,
+            "hasDisconnected": false,
+            "secretWord": "SpongeBob"
+        },
+        {
+            "id": "juBjiq8Yh_ILU5J4AAAF",
+            "roomId": "gameRoom0",
+            "username": "v3",
+            "hp": 10,
+            "won": false,
+            "hasDisconnected": false,
+            "secretWord": "horse"
+        }
+    ]
+}

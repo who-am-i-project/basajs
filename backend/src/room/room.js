@@ -17,6 +17,11 @@ export class Room {
         return this.playingUsers.length <= 1;
     }
 
+    endGame() {
+        this.removeUsersFromSpace();
+        this.saveResults();
+    }
+
     saveResults() {
         let jsonObject = {
             users: this.users
@@ -29,5 +34,11 @@ export class Room {
             }
             console.log("JSON file has been saved.");
         });
+    }
+
+    removeUsersFromSpace() {
+        users.forEach(u => {
+            UserSpace.removeUser(u.id);
+        })
     }
 }

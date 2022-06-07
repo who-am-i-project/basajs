@@ -2,7 +2,7 @@ import express from 'express';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 
-import { addUser, getUser, removeUser } from "./src/user/user_manager.js";
+import { UserSpace } from "./src/user/user_space.js";
 import { Lobby } from './src/room/lobby.js';
 import { Room } from './src/room/room.js';
 import { User } from './src/user/user.js';
@@ -23,10 +23,10 @@ const roomCapacity = 3;
 const rooms = [];
 User.loadSecretWords();
 
-if (process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production") {
     app.use(express.static('frontend/build'));
-    app.get("*", (req,res) =>{
-        req.sendFile(path.resolve( __dirname, 'frontend/build','index.html'))
+    app.get("*", (req, res) => {
+        req.sendFile(path.resolve(__dirname, 'frontend/build', 'index.html'))
     })
 }
 
@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
             return;
         }
 
-        let curUser = addUser(socket.id, `gameRoom${roomId}`, username);
+        let curUser = UserSpace.addUser(socket.id, `gameRoom${roomId}`, username);
         console.log(`user: id = ${curUser.id}`);
         socket.join(`gameRoom${roomId}`);
         lobby.join(curUser.id);
@@ -63,10 +63,11 @@ io.on("connection", (socket) => {
 
     //user sending question
     socket.on("question", (text) => {
-        let curUser = getUser(socket.id);
+        let curUser = UserSpace.getUser(socket.id);
         io.to(curUser.roomId).emit("otherQuestion", {
             questionId: questionId,
             username: curUser.username,
+            userId: curUser.id,
             text: text,
             secretWord: curUser.secretWord
         });
@@ -75,14 +76,14 @@ io.on("connection", (socket) => {
 
     //user sending vote
     socket.on("vote", ({ questionId, voteType }) => {
-        let curUser = getUser(socket.id);
+        let curUser = UserSpace.getUser(socket.id);
         console.log(`sending vote: ${questionId}, ${voteType}`);
         io.to(curUser.roomId).emit("otherVote", { questionId, voteType });
     });
 
     //user sending guess
     socket.on("guess", (text) => {
-        let curUser = getUser(socket.id);
+        let curUser = UserSpace.getUser(socket.id);
         if (veryInsensitiveStringComparison(curUser.secretWord, text)) {
             curUser.won = true;
             socket.emit("guessResult", { correct: true, hp: curUser.hp, text });
@@ -97,7 +98,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => {
-        const removedUser = removeUser(socket.id);
+        const removedUser = UserSpace.removeUser(socket.id);
         if (removedUser !== undefined) {
             removedUser.hasDisconnected = true;
             const removedUserFromLobby = lobby.remove(socket.id);
@@ -128,7 +129,7 @@ function changeState(roomId) {
         1: () => {
             if (curRoom.isEnd()) {
                 curRoom.state = 2;
-                curRoom.saveResults();
+                curRoom.endGame();
                 let idx = rooms.findIndex(r => r.id === curRoom.id);
                 if (idx !== -1) {
                     rooms.splice(idx, 1);
