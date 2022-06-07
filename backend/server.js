@@ -8,6 +8,8 @@ import { Room } from './src/room/room.js';
 import { User } from './src/user/user.js';
 import { veryInsensitiveStringComparison } from './src/utils.js'
 
+import * as fs from 'fs';
+
 const port = process.env.PORT || 8000;
 
 const app = express();
@@ -87,6 +89,17 @@ io.on("connection", (socket) => {
         if (veryInsensitiveStringComparison(curUser.secretWord, text)) {
             curUser.won = true;
             socket.emit("guessResult", { correct: true, hp: curUser.hp, text });
+            fs.readFile('../frontend/src/scoreboard.json', 'utf8', (err, data) => {
+                if (err) throw err;
+                let scoreboard = JSON.parse(data);
+                scoreboard.scoreboardItems.push({
+                    name: curUser.username,
+                    score: curUser.hp
+                });
+                fs.writeFile('../frontend/src/scoreboard.json', JSON.stringify(scoreboard), (err) => {
+                    if (err) throw err;
+                });
+            });
         } else {
             curUser.hp--;
             socket.emit("guessResult", { correct: false, hp: curUser.hp, text });
