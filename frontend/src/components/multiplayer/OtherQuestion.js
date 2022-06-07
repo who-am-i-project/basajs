@@ -10,7 +10,7 @@ const OtherQuestion = ({ yesHandler, noHandler, question, isDisabledOQ }) => {
         <div className="RoundSection">
             <div>
                 {question.text}<span className="dimmed"> by {question.username}</span>
-                <span className="secretWord">{ question.secretWord !== "" ? `(${question.secretWord})` : null }</span>
+                <span className="secretWord">{question.secretWord !== "" ? `(${question.secretWord})` : null}</span>
             </div>
             <div className="VoteWrapper">
                 <div className="YNStat">
@@ -19,13 +19,13 @@ const OtherQuestion = ({ yesHandler, noHandler, question, isDisabledOQ }) => {
                 </div>
             </div>
             <button
-                    className='buttonBlueHigher'
-                    disabled={disabled || isDisabledOQ}
-                    onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
+                className='buttonBlueHigher'
+                disabled={disabled || isDisabledOQ}
+                onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
             <button
-                    className='buttonBlueHigher'
-                    disabled={disabled || isDisabledOQ}
-                    onClick={() => { noHandler(); setDisabled(true) }}>No</button>
+                className='buttonBlueHigher'
+                disabled={disabled || isDisabledOQ}
+                onClick={() => { noHandler(); setDisabled(true) }}>No</button>
         </div>
     )
 };

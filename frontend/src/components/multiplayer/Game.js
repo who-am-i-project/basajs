@@ -60,36 +60,23 @@ const Game = ({ socket }) => {
         });
         socket.on('otherVote', (vote) => {
             console.log("Got otherVote")
-            setPersonalQuestions((prevPersonalQuestions) => {
-                console.log(`personalQuestions:`);
-                console.log(prevPersonalQuestions);
-                let newPersonalQuestions = [...prevPersonalQuestions];
-                let question = newPersonalQuestions.find((question) => question.questionId === vote.questionId);
+            const setQuestions = (prevQuestions) => {
+                console.log(`questions:`);
+                console.log(prevQuestions);
+                let newQuestions = [...prevQuestions];
+                let question = newQuestions.find((question) => question.questionId === vote.questionId);
                 if (question === undefined) {
-                    return prevPersonalQuestions;
+                    return prevQuestions;
                 }
                 if (vote.voteType === 'positive') {
                     question.yes += 1;
                 } else {
                     question.no += 1;
                 }
-                return newPersonalQuestions;
-            });
-            setOtherQuestions((prevOtherQuestions) => {
-                console.log(`otherQuestions:`);
-                console.log(prevOtherQuestions);
-                let newOtherQuestions = [...prevOtherQuestions];
-                let question = newOtherQuestions.find((question) => question.questionId === vote.questionId);
-                if (question === undefined) {
-                    return prevOtherQuestions;
-                }
-                if (vote.voteType === 'positive') {
-                    question.yes += 1;
-                } else {
-                    question.no += 1;
-                }
-                return newOtherQuestions;
-            });
+                return newQuestions;
+            };
+            setPersonalQuestions(setQuestions);
+            setOtherQuestions(setQuestions);
         });
         socket.on("endState", (roomId) => {
             console.log("Got endState");
