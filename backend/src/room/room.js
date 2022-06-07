@@ -13,7 +13,7 @@ export class Room {
     }
 
     isEnd() {
-        this.playingUsers = this.playingUsers.filter(u => !u.won && u.hp > 0);
+        this.playingUsers = this.playingUsers.filter(u => !u.won && u.hp > 0 && !u.hasDisconnected);
         return this.playingUsers.length <= 1;
     }
 

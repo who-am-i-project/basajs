@@ -94,6 +94,16 @@ io.on("connection", (socket) => {
     socket.on("leaveRoom", (roomId) => {
         socket.leave(roomId);
     });
+
+    socket.on("disconnect", () => {
+        const removedUser = removeUser(socket.id);
+        const removedUserFromLobby = lobby.remove(socket.id);
+        removedUser.hasDisconnected = true;
+        if (removedUserFromLobby !== undefined) {
+            const curTotalWaiting = lobby.size();
+            socket.to(removedUser.roomId).emit("otherLeftWaitingRoom", curTotalWaiting);
+        }
+    });
 });
 
 httpServer.listen(port, () => {

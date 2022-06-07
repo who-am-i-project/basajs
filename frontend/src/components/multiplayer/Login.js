@@ -13,10 +13,14 @@ const Login = ({ socket }) => {
             socket.on("otherJoined", (joinedUsername, secretWord, curTotalJoined) => {
                 setNumUsersWaiting(curTotalJoined);
             });
+            socket.on("otherLeftWaitingRoom", (curTotalJoined) => {
+                setNumUsersWaiting(curTotalJoined);
+            });
             socket.on("joined", () => {
                 setRoomFull(true);
                 socket.off("joined");
                 socket.off("otherJoined");
+                socket.off("otherLeftWaitingRoom");
                 setNumUsersWaiting(0);
             });
         } else {

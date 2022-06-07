@@ -22,7 +22,7 @@ export class User {
         this.username = username;
         this.hp = 10;
         this.won = false;
-        this.blocked = false;
-        this.secretWord = User.secretWords[Math.floor(Math.random() * User.secretWords.length)];;
+        this.hasDisconnected = false;
+        this.secretWord = User.secretWords[Math.floor(Math.random() * User.secretWords.length)];
     }
 }
