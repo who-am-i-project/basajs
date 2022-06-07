@@ -5,12 +5,14 @@ import MyGuess from './MyGuess';
 import { nanoid } from 'nanoid';
 
 const UserSpace = ({ personalQuestions, personalGuesses, postQuestionHandler, guessHandler, isEnabled, isFormEnabled, socket }) => {
+    let reversedQuestions= personalQuestions.reverse();
+    let reversedGuesses= personalGuesses.reverse();
     if (isEnabled) {
         return (
-            <div className="GameInfo">
+            <div className="UserSpace">
                 <div>
                     {
-                        personalQuestions.map((question) =>
+                        reversedQuestions.map((question) =>
                             <MyQuestion
                                 key={question.questionId}
                                 question={question}
@@ -19,7 +21,7 @@ const UserSpace = ({ personalQuestions, personalGuesses, postQuestionHandler, gu
                 </div>
                 <div>
                     {
-                        personalGuesses.map((guess) =>
+                        reversedGuesses.map((guess) =>
                             <MyGuess
                                 key={nanoid()}
                                 guess={guess}

@@ -1,0 +1,316 @@
+  @font-face {
+    font-family: 'DraftingMono';
+    src: url(../fonts/DraftingMono.ttf);
+  }
+
+  @font-face {
+    font-family: 'Yugly';
+    src: url(../fonts/Yugly.ttf);
+  }
+  
+  @font-face {
+    font-family: 'PWChalk';
+    src: url(../fonts/PWChalk.ttf);
+  }
+
+  @font-face {
+    font-family: 'Effortless';
+    src: url(../fonts/effortless.ttf);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #root {
+    min-height: 100vh;
+    background-image: url(../images/Wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f93b97;
+    background: rgb(249,59,151);
+    background: linear-gradient(90deg, rgba(249,59,151,1) 0%, rgba(161,249,59,1) 43%, rgba(161,249,59,1) 57%, rgba(249,59,151,1) 100%);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #a1f93b;
+    color: black;
+    font-family: 'PWChalk';
+  }
+  
+  nav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  nav li a:hover {
+    background-color: #a1df1f;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #c52869;
+  }
+
+  .Content {
+    width: 80%;
+    margin: 40px auto 0;
+    padding: 0 0 30px;
+    color: white;
+    font-size: 32px;
+    font-family: 'Effortless';
+  }
+  
+  .Header {
+    font-family: 'Yugly';
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .PlaySection {
+    margin: 100px 0;
+  }
+  
+  .buttonBlue {
+    appearance: none;
+    background-color: #3ca2fc;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Yugly';
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 16px 26px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+  
+  .buttonBlue:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .buttonBlue:hover {
+    background-color: #3181c6;
+  }
+  
+  .buttonBlue:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+  }
+  
+  .buttonBlue:disabled {
+    background-color: #3ca2fc;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+  }
+  
+  .buttonBlue:active {
+    background-color: #3ca2fc;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+
+  .Center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Form {
+    width: 70%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+  .FormLabel {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    display: block;
+    transition: all 0.3s;
+    transform: translateY(0rem);
+  }
+
+  .FormInput {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.2rem;
+    margin: 100px 10px 100px 250px;
+    padding: 16px 25px;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    width: 40%;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    background-color: #3ca2fc;
+    display: inline-block;
+
+    box-shadow: inset 0 0 0 0 #3ca2fc,
+			0 0 0 0 #3ca2fc,
+			3px -3px 30px #1beabd, 
+			-3px 3px 30px #10abff;
+  }
+
+  .FormInput:placeholder-shown + .FormLabel {
+    opacity: 0;
+    background-color: #3ca2fc;
+    visibility: hidden;
+    -webkit-transform: translateY(-4rem);
+    transform: translateY(-4rem);
+  }
+
+  .buttonBlueHigher {
+    appearance: none;
+    background-color: #3ca2fc;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Yugly';
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 29px;
+    padding: 16px 26px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+  
+  .buttonBlueHigher:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .buttonBlueHigher:hover {
+    background-color: #3181c6;
+  }
+  
+  .buttonBlueHigher:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+  }
+  
+  .buttonBlueHigher:disabled {
+    background-color: #3ca2fc;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+  }
+  
+  .buttonBlueHigher:active {
+    background-color: #3ca2fc;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+
+  .itemList .inputItem {
+    padding-left: 20px;
+  }
+
+  .itemHeader {
+    margin-top: 20px;
+    font-family: 'Yugly';
+    font-size: 50px;
+  }
+
+  .dimmed {
+    font-size: 25px;
+    margin-left: 10px;
+    color: #3ca2fc;
+  }
+
+  .Disabler {
+    background: #04a380;
+  }
+  .Disabler *{
+    opacity: 0.5;
+  }
+  .Flexer {
+    display: flex;
+  }
+  .strikeThrough {
+    opacity: 0.7;
+    text-decoration: line-through;
+  }

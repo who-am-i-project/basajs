@@ -7,8 +7,8 @@ const DescriptionSection = (props) => {
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 title="video"
-                width="640"
                 height="360"
+                className="videoBox"
             />
         </div>
     </div>

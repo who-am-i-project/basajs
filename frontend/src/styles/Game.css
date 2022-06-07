@@ -1,11 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  }
+
+  html, body {
+    height: 100%;
+}
+
   .WaitText {
-    margin-top: 100px;
-    font-family: 'Yugly';
-    font-size: 80px;
-    color: white;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    color: black;
+  }
+  .HomePageText{
+    margin-bottom: 4rem;
+    font-size: 4rem;
   }
   .LoginPage button {
     display: inline-block;
+  }
+  .LoginPage{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .ButtonsWrapper {
     margin-top: 50px;
@@ -18,23 +39,19 @@
   .ButtonsWrapper button {
     margin: 0 20px;
   }
-  .GameInfo {
-    flex: 50%;
-    color: white;
-    font-family: 'Effortless';
-    font-size: 30px;
-    font-weight: 600;
-  }
-  .FormCenterer {
+
+  /* .FormCenterer {
     padding: 30px;
     justify-content: center;
     align-content: center;
     display: flex;
     height: 70px;
     margin-bottom: 30px;
-  }
+  } */
 
-  .FormInputWider {
+
+
+  /* .FormInputWider {
     font-family: 'Roboto', sans-serif;
     color: #333;
     font-size: 1.2rem;
@@ -54,63 +71,192 @@
 			0 0 0 0 #3ca2fc,
 			3px -3px 30px #1beabd, 
 			-3px 3px 30px #10abff;
+  } */
+  .FormInputWider {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 1.125rem;
+
+
   }
 
   .FormInputWider:placeholder-shown + .FormLabel {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(-4rem);
+    transform: translateY(-4rem);
+  }
+
+  .VoteWrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .secretWord {
+    background-color:#222222;
+    color:#DB0505;
+    padding: 0.75rem 0.5rem;
+    }
+
+  .HPSection {
+    font-size: 1.25rem;
+  }
+
+
+
+
+
+  .QuestionText {
+    font-size:1.125rem;
+    margin:1.25rem 0 1rem 1rem;
+  }
+
+  .Answers div {
+    display: inline-block;
+    margin: 0 0.25rem 1rem 1rem;
+    background-color:#222222;
+    color:white;
+    padding:0.75rem 0.5rem;
+  }
+  .AnswerCount{
+    display: inline-block;
+    margin-right:0.5rem;
+    background-color:#222222;
+    color:white;
+    padding:0.75rem 0.5rem;
+    border: none;
+    font-size: 1rem;
+  }
+  .AnswerButtonWrapper{
+    display:flex;
+  }
+  .QuestionBlock {
+    margin-bottom:1rem;
+    border: 1px solid black;
+  }
+  .itemHeader {
+    margin-top: 20px;
+    font-size: 50px;
+  }
+
+  .Timer{
+    font-size: 1.25rem;
+  }
+  .GameInfoContainer{
+    display: flex;
+    gap:2rem;
+    margin-bottom:1rem;
+  }
+
+  .GameContainer{
+    display: flex;
+    gap:1rem;
+    height: 80vh;
+  }
+
+  .UserSpaceWrapper{
+    flex: 50%;
+    border: 1px solid black;
+    padding: 2rem 3rem;
+    overflow-y:scroll;
+  }
+  .UserSpace{
+    margin-top: 3rem;
+  }
+  .ChatSpace {
+    flex: 50%;
+    border: 1px solid black;
+    padding: 2rem 3rem;
+    overflow-y:scroll;
+
+  } 
+  .FormGuessInput {
+    color: rgb(54, 54, 54);
+    font-size: 1.125rem;
+    padding: 1.125rem 1.125rem;
+    border-radius: 0px;
+  }
+
+  
+  .FormGuessInput:placeholder-shown + .FormLabel {
     opacity: 0;
     background-color: #3ca2fc;
     visibility: hidden;
     -webkit-transform: translateY(-4rem);
     transform: translateY(-4rem);
   }
-  .VoteWrapper p {
-    padding-left: 10px;
+  .FormContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ButtonRow{
+    display: flex;
+    gap:1rem;
+  }
+  .AnswerButton{
+    border: 1px solid black;
+    background-color: white;
+    padding: 0.75rem 0.25rem;;
+    box-shadow: black 0.125rem 0.125rem 0;
+    transition: 0.3s;
+    margin-right: 1rem;
   }
 
-
-
-  .secretWord {
-    font-size: 20px;
-    color: #edfc1e;
-    margin-left: 10px;
+  .FormGuessButton {
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    padding: 1.125rem 1rem;
+    box-shadow: black 0.25rem 0.25rem 0;
+    font-size: 1.25rem;
+    transition: 0.3s;
   }
-
-  .HPSection {
-    font-family: 'PWChalk';
-    font-size: 50px;
-    margin: 25px 0;
+  .FormGuessButton:nth-child(1){
+    flex-grow:3;
   }
-
-
-  .YNStat {
-    margin: 15px 0;
+  .FormGuessButton:nth-child(2){
+    flex-grow:1;
   }
-  .YNStat p {
-    display: inline-block;
-    margin: 0 20px;
+  .FormGuessButton:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
   }
-  .RoundSection {
-    margin: 20px 0 50px 0;
+  .FormGuessButton:hover,AnswerButton:hover {
+    background-color: var(--hover-color);
   }
-  .RoundSection button {
-    margin: 0 24px;
+  
+  .FormGuessButton:focus,AnswerButton:focus {
+    background-color: var(--hover-color);
   }
-
-  .ChatSpace {
-    flex: 50%;
+  
+  .FormGuessButton:disabled,AnswerButton:disabled {
+    background-color:var(--hover-color);
+    cursor: default;
   }
-  .QuestionText {
-    font-size: 40px;
+  
+  .FormGuessButton:active,AnswerButton:active {
+    background-color:var(--hover-color);
   }
-  .Answers div {
-    display: inline-block;
-    margin: 0 20px;
+  .GuessContainer{
+    border:1px solid black;
+    padding: 1.125rem 1rem;
   }
-  .QuestionBlock {
-    margin: 0 0 50px;
+  .GuessContainer p{
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
   }
-  .itemHeader {
-    margin-top: 20px;
-    font-family: 'Yugly';
-    font-size: 50px;
+  .OtherQuestionContainer{
+    margin-bottom:1rem;
+    border:1px solid black;
+    padding: 1.125rem 1rem;
+  }
+  .OtherQuestionTextWrapper{
+    font-size:1.125rem;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:1rem;
+  }
+  .dimmed {
+    color: #202020;
   }

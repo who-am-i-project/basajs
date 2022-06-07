@@ -1,11 +1,12 @@
 const MyGuess = ({ guess }) => {
-    return <div>
-        <h2>
-            {guess.text}
-        </h2>
+    return <div className="GuessContainer">
+        <p>
+            Guess: {guess.text}
+        </p>
         <div>
-            {guess.correct && "You've guessed correctly"}
-            {!guess.correct && "No, you've guessed incorrectly"}
+            Status:
+            {guess.correct && " correct"}
+            {!guess.correct && "incorrect"}
         </div>
     </div>;
 };

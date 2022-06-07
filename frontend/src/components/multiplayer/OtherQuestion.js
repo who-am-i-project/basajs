@@ -7,25 +7,32 @@ const OtherQuestion = ({ yesHandler, noHandler, question, isDisabledOQ }) => {
     const [disabled, setDisabled] = useState(false);
 
     return (
-        <div className="RoundSection">
-            <div>
-                {question.text}<span className="dimmed"> by {question.username}</span>
-                <span className="secretWord">{question.secretWord !== "" ? `(${question.secretWord})` : null}</span>
-            </div>
-            <div className="VoteWrapper">
-                <div className="YNStat">
-                    <p>Yes: {question.yes}</p>
-                    <p>No: {question.no}</p>
+        <div className="OtherQuestionContainer">
+            <div className="OtherQuestionTextWrapper">
+                <div>
+                    {question.text}
                 </div>
+                <div className="dimmed"> by {question.username}</div>
             </div>
-            <button
-                className='buttonBlueHigher'
-                disabled={disabled || isDisabledOQ}
-                onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
-            <button
-                className='buttonBlueHigher'
-                disabled={disabled || isDisabledOQ}
-                onClick={() => { noHandler(); setDisabled(true) }}>No</button>
+
+            <div className="VoteWrapper">
+
+                <div className="AnswerButtonWrapper">
+                    <div className="AnswerCount">Yes: {question.yes}</div>
+                    <button
+                        className='AnswerButton'
+                        disabled={disabled || isDisabledOQ}
+                        onClick={() => { yesHandler(); setDisabled(true) }}>Yes</button>
+                    <div className="AnswerCount">No: {question.no}</div>
+
+                    <button
+                        className='AnswerButton'
+                        disabled={disabled || isDisabledOQ}
+                        onClick={() => { noHandler(); setDisabled(true) }}>No</button>
+                </div>
+
+                <div className="secretWord">{question.secretWord !== "" ? `(${question.secretWord})` : null}</div>
+                </div>
         </div>
     )
 };

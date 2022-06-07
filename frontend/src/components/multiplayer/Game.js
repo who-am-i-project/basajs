@@ -122,10 +122,15 @@ const Game = ({ socket }) => {
     if (socketConfiguredForGame && roomFull) {
         return (
             <div className="Content">
-                <Timer targetDate={phaseEndDate} phase={phase} />
-                <div className="HPSection">YOUR HP: {hp}</div>
+                <div className="GameInfoContainer">
+                    <div className="HPSection">HP: {hp}</div>
+                    <Timer targetDate={phaseEndDate} phase={phase} />
+                </div>
+
+                <div className="GameContainer">
+                    <div className="UserSpaceWrapper">
                 <Form isEnabled={isFormEnabled && !outOfGame} postQuestionHandler={postQuestionHandler} guessHandler={guessHandler} />
-                <div className="Flexer">
+                    
                     <UserSpace
                         personalQuestions={personalQuestions}
                         personalGuesses={personalGuesses}
@@ -135,6 +140,7 @@ const Game = ({ socket }) => {
                         guessHandler={guessHandler}
                         inputProps={{ type: inputType.type, typeSetter: setInputType }}
                     />
+                    </div>
                     <ChatSpace isEnabled={phase === 'vote'} otherQuestions={otherQuestions} socket={socket} />
                 </div>
             </div>

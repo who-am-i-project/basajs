@@ -5,7 +5,7 @@ const WaitingLobby = (props) => {
     const { numUsersWaiting } = useContext(MultiplayerContext);
     return (
         <>
-            <center className="WaitText">
+            <center className="Center WaitText">
                 Waiting...
                 <div>
                     {numUsersWaiting}/3
