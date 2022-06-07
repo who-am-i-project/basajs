@@ -1,0 +1,27 @@
+  .Scoreboard-wrapper {
+    margin-top: 80px;
+    padding: 20px 150px;
+    border: 8px solid #aa6c01;
+    border-image: linear-gradient(to bottom, rgba(67,255,248,1), rgba(250,6,255,1)) 1;
+    border-radius: 5px;
+    font-family: 'PWChalk';
+    font-size: 30px;
+  }
+
+  .NewsAndEvent-wrapper {
+    font-family: 'Effortless';
+    margin-top: 100px;
+  }
+  
+  .NewsAndEvent {
+    font-family: 'DraftingMono';
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .NewsAndEvent li {
+    margin: 10px 0;
+  }
+
+  .NewsAndEvent li a {
+    color: #a1f93b;
+  }

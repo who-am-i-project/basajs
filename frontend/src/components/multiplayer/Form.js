@@ -7,13 +7,13 @@ const Form = ({ postQuestionHandler, guessHandler, isEnabled }) => {
             <div className="FormCenterer">
                 <input
                     disabled={!isEnabled}
-                    className="form__input2"
+                    className="FormInputWider"
                     value={inputValue}
                     type='text'
                     onChange={event => setNewInputValue(event.target.value)}
                     placeholder={`Enter your question or guess`} />
-                <button disabled={!isEnabled} className="button-4" onClick={() => postQuestionHandler(inputValue, setNewInputValue)}>Post a question</button>
-                <button disabled={!isEnabled} className="button-4" onClick={() => guessHandler(inputValue, setNewInputValue)}>Guess</button>
+                <button disabled={!isEnabled} className="buttonBlueHigher" onClick={() => postQuestionHandler(inputValue, setNewInputValue)}>Post a question</button>
+                <button disabled={!isEnabled} className="buttonBlueHigher" onClick={() => guessHandler(inputValue, setNewInputValue)}>Guess</button>
             </div>
         );
     }      
@@ -22,13 +22,13 @@ const Form = ({ postQuestionHandler, guessHandler, isEnabled }) => {
             <div className="Disabler FormCenterer">
                 <input
                     disabled={!isEnabled}
-                    className="form__input2"
+                    className="FormInputWider"
                     value={inputValue}
                     type='text'
                     onChange={event => setNewInputValue(event.target.value)}
                     placeholder={`Enter your question or guess`} />
-                <button disabled={!isEnabled} className="button-4" onClick={() => postQuestionHandler(inputValue, setNewInputValue)}>Post a question</button>
-                <button disabled={!isEnabled} className="button-4" onClick={() => guessHandler(inputValue, setNewInputValue)}>Guess</button>
+                <button disabled={!isEnabled} className="buttonBlueHigher" onClick={() => postQuestionHandler(inputValue, setNewInputValue)}>Post a question</button>
+                <button disabled={!isEnabled} className="buttonBlueHigher" onClick={() => guessHandler(inputValue, setNewInputValue)}>Guess</button>
             </div>
         );
     }      

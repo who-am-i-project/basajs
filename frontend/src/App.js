@@ -1,5 +1,5 @@
 import React from "react";
-import './styles/App.css'
+import './styles/General.css'
 import './resource.js'
 import { Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
