@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/Community.css';
 
 const Community = (props) => {
@@ -7,6 +7,7 @@ const Community = (props) => {
   const [message, setMessage] = useState('Click to start');
   const [color, setColor] = useState('black');
   const [backgroundColor, setBackgroundColor] = useState('white');
+  const [scoreboardItems, setScoreboardItems] = useState([]);
 
   const handleClick = () => {
     setScore((prevScore) => prevScore + 1);
@@ -21,13 +22,11 @@ const Community = (props) => {
     }
   }
 
-  const scoreboard = require('scoreboard.json');
-  let scoreboardInfo = JSON.parse(JSON.stringify(scoreboard));
-  let scoreboardItems = scoreboardInfo.scoreboardItems;
-
-  scoreboardItems.sort(function (a, b) {
-    return b.score - a.score;
-  });
+  useEffect(() => {
+    fetch("http://localhost:8001/scoreboardItems").then(res => res.json())
+      .then(parsed => parsed.sort((a, b) => b.score - a.score))
+      .then(sorted => setScoreboardItems(sorted));
+  }, []);
 
   let scoreboardDivs = scoreboardItems.map(function (item, index) {
     if (index < 5)
