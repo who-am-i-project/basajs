@@ -23,7 +23,7 @@ const Community = (props) => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:8001/scoreboardItems").then(res => res.json())
+    fetch("/scoreboard/scoreboardItems").then(res => res.json())
       .then(parsed => parsed.sort((a, b) => b.score - a.score))
       .then(sorted => setScoreboardItems(sorted));
   }, []);

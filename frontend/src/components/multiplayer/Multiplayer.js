@@ -16,7 +16,10 @@ const Multiplayer = () => {
     const [numUsersWaiting, setNumUsersWaiting] = useState(0);
 
     useEffect(() => {
-        const socket = io('/');
+        const socket = io('/', {
+            transports: ['websocket'],
+            path: '/socket',
+        });
         setSocket(socket);
         return () => socket.close();
     }, []);

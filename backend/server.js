@@ -14,7 +14,7 @@ const port = process.env.PORT || 8000;
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+const io = new Server(httpServer, { path: '/socket' });
 
 const lobby = new Lobby();
 
