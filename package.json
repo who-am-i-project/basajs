@@ -6,16 +6,18 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
+    "start": "node backend/server.js && npx json-server --watch scoreboard.json -p 8001",
     "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^7.2.1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "fs": "^0.0.1-security",
+    "json-server": "^0.17.0",
     "socket.io": "^4.5.1"
   },
   "devDependencies": {
