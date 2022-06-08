@@ -1,6 +1,7 @@
 import express from 'express';
 import { Server } from "socket.io";
 import { createServer } from 'http';
+import jsonServer from 'json-server';
 
 import { UserSpace } from "./src/user/user_space.js";
 import { Lobby } from './src/room/lobby.js';
@@ -14,7 +15,9 @@ const port = process.env.PORT || 8000;
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, { path: '/socket' });
+const io = new Server(httpServer);
+
+app.use('/scoreboard', jsonServer.router('./scoreboard.json'));
 
 const lobby = new Lobby();
 
