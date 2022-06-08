@@ -15,7 +15,7 @@ const Community = () => {
       return (
         <div key={index}>
           <div>
-            {item.name.toUpperCase()} : {item.score}
+            {item.name.toUpperCase()}: {item.score}
           </div>
         </div>
       );
@@ -32,7 +32,7 @@ const Community = () => {
         </div>
       </div>
       <div className="NewsAndEvent-wrapper">
-        <div className="Header">NEWS AND EVENTS</div>
+        <div className="Header">News and Events</div>
         <div className="NewsAndEvent">
           <ul>
             <li>

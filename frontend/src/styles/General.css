@@ -1,222 +1,233 @@
-@font-face {
-  font-family: 'DraftingMono';
-  src: url(../fonts/DraftingMono.ttf);
-}
-@font-face {
-  font-family: 'Yugly';
-  src: url(../fonts/Yugly.ttf);
-}
-@font-face {
-  font-family: 'PWChalk';
-  src: url(../fonts/PWChalk.ttf);
-}
-@font-face {
-  font-family: 'Effortless';
-  src: url(../fonts/effortless.ttf);
-}
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Press Start 2P', cursive;
+ * {
+     margin: 0;
+     padding: 0;
+     font-family: 'Press Start 2P', cursive;
 }
-#root {
- /* min-height: 100vh;
-  */
-  height: 100%;
+ #root {
+     height: 100%;
 }
-:root {
-  --hover-color: #9e9e9e;
+ :root {
+     --hover-color: #9e9e9e;
 }
-.videoBox{
-  width:50vw;
+ .videoBox{
+     width:50vw;
 }
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: black;
-  display: flex;
-  align-items: left;
-  justify-content: left;
-  font-size: 1.25rem;
+ nav ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     background-color: black;
+     display: flex;
+     align-items: left;
+     justify-content: left;
+     font-size: 1.25rem;
 }
-nav li {
-  list-style-type: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  color: white;
-  font-family: 'PWChalk';
+ nav li {
+     list-style-type: none;
+     display: inline-block;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     color: white;
+     font-family: 'PWChalk';
 }
-nav li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 1.25rem 1.5rem;
-  text-decoration: none;
-  transition: 0.3s;
+ nav li a {
+     display: block;
+     color: white;
+     text-align: center;
+     padding: 1.25rem 1.5rem;
+     text-decoration: none;
+     transition: 0.3s;
 }
-nav li a:hover {
-  color: var(--hover-color);
+ nav li a:hover {
+     color: var(--hover-color);
 }
-.App {
-  text-align: center;
+ .App {
+     text-align: center;
 }
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ .App-logo {
+     height: 40vmin;
+     pointer-events: none;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-      animation: App-logo-spin infinite 20s linear;
- }
+ @media (prefers-reduced-motion: no-preference) {
+     .App-logo {
+         animation: App-logo-spin infinite 20s linear;
+    }
 }
-.App-header {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+ .App-header {
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
 }
-.Content {
-  width: 90%;
-  margin: 1.5rem auto 0;
-  padding: 0 0 30px;
+ .Content {
+     width: 90%;
+     margin: 1.5rem auto 0;
+     padding: 0 0 30px;
 }
-.Header {
-  font-family: 'Yugly';
-  font-size: 80px;
-  font-weight: bold;
-  margin-bottom: 20px;
+ .Header {
+     font-size: 3rem;
+     font-weight: bold;
+     border-bottom: 4px solid black;
+     margin-bottom: 2rem;
+     padding-bottom: 1rem;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+ ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
 }
-@keyframes App-logo-spin {
-  from {
-      transform: rotate(0deg);
- }
-  to {
-      transform: rotate(360deg);
- }
+ @keyframes App-logo-spin {
+     from {
+         transform: rotate(0deg);
+    }
+     to {
+         transform: rotate(360deg);
+    }
 }
-.buttonBlue{
-  color: black;
-  border: 1px solid black;
-  background-color: white;
-  padding: 1.125rem 4rem;
-  box-shadow: black 0.25rem 0.25rem 0;
-  font-size: 1.25rem;
-  transition: 0.3s;
+ .buttonBlue{
+     color: black;
+     border: 1px solid black;
+     background-color: white;
+     padding: 1.125rem 4rem;
+     box-shadow: black 0.25rem 0.25rem 0;
+     font-size: 1.25rem;
+     transition: 0.3s;
 }
-.buttonBlue:focus:not(:focus-visible):not(.focus-visible) {
-  box-shadow: none;
-  outline: none;
+ .buttonBlue:focus:not(:focus-visible):not(.focus-visible) {
+     box-shadow: none;
+     outline: none;
 }
-.buttonBlue:hover {
-  background-color: var(--hover-color);
+ .buttonBlue:hover {
+     background-color: var(--hover-color);
 }
-.buttonBlue:focus {
-  background-color: var(--hover-color);
+ .buttonBlue:focus {
+     background-color: var(--hover-color);
 }
-.buttonBlue:disabled {
-  background-color: #3ca2fc;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
-  cursor: default;
+ .buttonBlue:disabled {
+     background-color: #3ca2fc;
+     border-color: rgba(27, 31, 35, .1);
+     color: rgba(255, 255, 255, .8);
+     cursor: default;
 }
-.buttonBlue:active {
-  background-color: #3ca2fc;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+ .buttonBlue:active {
+     background-color: #3ca2fc;
+     box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
-.Center {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+ .Center {
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
 }
-.Form {
-  margin: 0 auto;
-  align-items: center;
-  gap: 4rem;
-  display: flex;
+ .Form {
+     margin: 0 auto;
+     align-items: center;
+     gap: 4rem;
+     display: flex;
 }
-.PlaySection{
-  margin-bottom: 4rem;
+ .PlaySection{
+     margin-bottom: 4rem;
 }
-.FormLabel {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
-  margin-left: 2rem;
-  margin-top: 0.7rem;
-  display: block;
-  transition: all 0.3s;
-  transform: translateY(0rem);
+ .FormLabel {
+     font-size: 1.2rem;
+     margin-left: 2rem;
+     margin-top: 0.7rem;
+     display: block;
+     transition: all 0.3s;
+     transform: translateY(0rem);
 }
-.FormInput {
-  color: rgb(54, 54, 54);
-  font-size: 1.125rem;
-  padding: 1.125rem 1.125rem;
-  border-radius: 0px;
+ .FormInput {
+     color: rgb(54, 54, 54);
+     font-size: 1.125rem;
+     padding: 1.125rem 1.125rem;
+     border-radius: 0px;
 }
-.FormInput:placeholder-shown + .FormLabel {
-  opacity: 0;
-  background-color: #3ca2fc;
-  visibility: hidden;
-  -webkit-transform: translateY(-4rem);
-  transform: translateY(-4rem);
+ .FormInput:placeholder-shown + .FormLabel {
+     opacity: 0;
+     background-color: #3ca2fc;
+     visibility: hidden;
+     -webkit-transform: translateY(-4rem);
+     transform: translateY(-4rem);
 }
-.buttonBlueHigher {
-  color: black;
-  border: 1px solid black;
-  background-color: white;
-  padding: 1.125rem 3rem;
-  box-shadow: black 0.25rem 0.25rem 0;
-  font-size: 1.25rem;
-  transition: 0.3s;
+ .buttonBlueHigher {
+     color: black;
+     border: 1px solid black;
+     background-color: white;
+     padding: 1.125rem 3rem;
+     box-shadow: black 0.25rem 0.25rem 0;
+     font-size: 1.25rem;
+     transition: 0.3s;
 }
-.buttonBlueHigher:focus:not(:focus-visible):not(.focus-visible) {
-  box-shadow: none;
-  outline: none;
+ .buttonBlueHigher:focus:not(:focus-visible):not(.focus-visible) {
+     box-shadow: none;
+     outline: none;
 }
-.buttonBlueHigher:hover {
-  background-color: var(--hover-color);
+ .buttonBlueHigher:hover {
+     background-color: var(--hover-color);
 }
-.buttonBlueHigher:focus {
-  background-color: var(--hover-color);
+ .buttonBlueHigher:focus {
+     background-color: var(--hover-color);
 }
-.buttonBlueHigher:disabled {
-  background-color:var(--hover-color);
-  cursor: default;
+ .buttonBlueHigher:disabled {
+     background-color:var(--hover-color);
+     cursor: default;
 }
-.buttonBlueHigher:active {
-  background-color:var(--hover-color);
+ .buttonBlueHigher:active {
+     background-color:var(--hover-color);
 }
-.itemList .inputItem {
-  padding-left: 20px;
+ .itemList .inputItem {
+     padding-left: 20px;
 }
-.itemHeader {
-  margin-top: 20px;
-  font-family: 'Yugly';
-  font-size: 50px;
+ .itemHeader {
+     margin-top: 20px;
+     font-family: 'Yugly';
+     font-size: 50px;
 }
-.Disabler {
- /* background: #cfcfcf;
-  */
+ .Disabler {
+    /* background: #cfcfcf;
+     */
 }
-.Disabler *{
-  opacity: 0.5;
+ .Disabler *{
+     opacity: 0.5;
 }
-.Flexer {
-  display: flex;
+ .Flexer {
+     display: flex;
 }
-.strikeThrough {
-  opacity: 0.7;
-  text-decoration: line-through;
+ .strikeThrough {
+     opacity: 0.7;
+     text-decoration: line-through;
+}
+ .ResultWrapper{
+     display:flex;
+     height: 100%;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+ .ResultWrapper p{
+     font-size: 3rem;
+     text-align: center;
+     margin-bottom: 3rem;
+}
+ td, th {
+     border: 2px solid black;
+     padding:0.75rem 1rem;
+}
+ table {
+     width: 80%;
+     border-collapse: collapse;
+}
+ .greenCell{
+     background-color: rgb(152, 250, 152);
+}
+ .redCell{
+     background-color: rgb(250, 152, 152);
+}
+ thead{
+     background-color:rgb(224, 224, 224);
 }
