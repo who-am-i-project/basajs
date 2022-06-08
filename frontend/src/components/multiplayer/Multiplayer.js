@@ -5,6 +5,7 @@ import Game from "./Game.js";
 import Login from "./Login.js";
 import WaitingLobby from "./WaitingLobby.js";
 import MultiplayerContext from "./MultiplayerContext.js";
+import ResultPage from "./ResultPage.js";
 
 
 const Multiplayer = () => {
@@ -14,6 +15,7 @@ const Multiplayer = () => {
     const [roomFull, setRoomFull] = useState(false);
     const [username, setUsername] = useState('');
     const [numUsersWaiting, setNumUsersWaiting] = useState(0);
+    const [results, setResults] = useState();
 
     useEffect(() => {
         const socket = io('/');
@@ -33,11 +35,14 @@ const Multiplayer = () => {
                 username,
                 setUsername,
                 numUsersWaiting,
-                setNumUsersWaiting
+                setNumUsersWaiting,
+                results,
+                setResults
             }}>
                 {isInLogin && <Login socket={socket} />}
                 {!isInLogin && (!socketConfiguredForGame || !roomFull) && <WaitingLobby />}
                 {!isInLogin && <Game socket={socket} />}
+                {results && <ResultPage results={results} />}
             </MultiplayerContext.Provider>
         );
     }

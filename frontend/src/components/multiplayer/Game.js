@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Form from './Form'
-import UserSpace from './UserSpace'
-import ChatSpace from './ChatSpace'
+import Form from './Form';
+import UserSpace from './UserSpace';
+import ChatSpace from './ChatSpace';
 import MultiplayerContext from './MultiplayerContext';
-import Timer from './Timer'
-import { useNavigate } from 'react-router-dom';
+import Timer from './Timer';
 import '../../styles/Game.css';
 
 const Game = ({ socket }) => {
@@ -16,9 +15,8 @@ const Game = ({ socket }) => {
     const [phaseEndDate, setPhaseEndDate] = useState(new Date());
     const [isFormEnabled, setIsFormEnabled] = useState(false);
     const [outOfGame, setOutOfGame] = useState(false);
-    const navigate = useNavigate();
 
-    const { setSocketConfiguredForGame, socketConfiguredForGame, roomFull } = useContext(MultiplayerContext);
+    const { setSocketConfiguredForGame, socketConfiguredForGame, roomFull, setResults } = useContext(MultiplayerContext);
 
     const setSocketListeners = () => {
         socket.on('inputState', () => {
@@ -68,9 +66,9 @@ const Game = ({ socket }) => {
             setPersonalQuestions(setQuestions);
             setOtherQuestions(setQuestions);
         });
-        socket.on("endState", (roomId) => {
+        socket.on("endState", ({roomId, statistics}) => {
             socket.emit("leaveRoom", roomId);
-            navigate("/");
+            setResults(statistics);
         });
         setSocketConfiguredForGame(true);
     }

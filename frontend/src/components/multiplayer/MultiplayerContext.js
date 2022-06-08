@@ -10,7 +10,9 @@ const MultiplayerContext = React.createContext({
     username: '',
     setUsername: () => { },
     numUsersWaiting: 0,
-    setNumUsersWaiting: () => { }
+    setNumUsersWaiting: () => { },
+    results: false,
+    setResults: () => { }
 });
 
 export default MultiplayerContext;
