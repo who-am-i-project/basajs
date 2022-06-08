@@ -1,7 +1,6 @@
 import express from 'express';
 import { Server } from "socket.io";
 import { createServer } from 'http';
-import jsonServer from 'json-server';
 
 import { UserSpace } from "./src/user/user_space.js";
 import { Lobby } from './src/room/lobby.js';
@@ -17,7 +16,14 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
-app.use('/scoreboard', jsonServer.router('./scoreboard.json'));
+app.get('/scoreboard', (req, res) => {
+    fs.readFile('./scoreboard.json', 'utf8', (err, data) => {
+        if (err) {
+            throw err;
+        }
+        res.send(JSON.parse(data));
+    });
+});
 
 const lobby = new Lobby();
 
