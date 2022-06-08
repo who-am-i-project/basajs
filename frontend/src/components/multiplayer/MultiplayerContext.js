@@ -1,10 +1,10 @@
 import React from "react";
 
 const MultiplayerContext = React.createContext({
-    isInGameRoom: false,
-    setIsInGameRoom: () => { },
-    isWaiting: false,
-    setIsWaiting: () => { },
+    isInLogin: false,
+    setIsInLogin: () => { },
+    socketConfiguredForGame: false,
+    setSocketConfiguredForGame: () => { },
     roomFull: false,
     setRoomFull: () => { },
     username: '',

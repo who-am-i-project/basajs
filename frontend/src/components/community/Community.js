@@ -1,26 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/Community.css';
 
-const Community = (props) => {
-  const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
-  const [message, setMessage] = useState('Click to start');
-  const [color, setColor] = useState('black');
-  const [backgroundColor, setBackgroundColor] = useState('white');
+const Community = () => {
   const [scoreboardItems, setScoreboardItems] = useState([]);
-
-  const handleClick = () => {
-    setScore((prevScore) => prevScore + 1);
-    setMessage('Good job!');
-    setColor('green');
-    setBackgroundColor('lightgreen');
-    if (score > highScore) {
-      setHighScore(score);
-      setMessage('New high score!');
-      setColor('green');
-      setBackgroundColor('lightgreen');
-    }
-  }
 
   useEffect(() => {
     fetch("/scoreboard/scoreboardItems").then(res => res.json())

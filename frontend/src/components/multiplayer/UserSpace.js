@@ -4,7 +4,7 @@ import MyGuess from './MyGuess';
 
 import { nanoid } from 'nanoid';
 
-const UserSpace = ({ personalQuestions, personalGuesses, postQuestionHandler, guessHandler, isEnabled, isFormEnabled, socket }) => {
+const UserSpace = ({ personalQuestions, personalGuesses, isEnabled }) => {
     let reversedQuestions= personalQuestions.reverse();
     let reversedGuesses= personalGuesses.reverse();
     if (isEnabled) {
@@ -28,9 +28,6 @@ const UserSpace = ({ personalQuestions, personalGuesses, postQuestionHandler, gu
                             />)
                     }
                 </div>
-                {/* <ItemList list={questions} inputType={'questions'} />
-                <hr />
-                <ItemList list={guesses} inputType={'guesses'} /> */}
             </div>
         );
     }
