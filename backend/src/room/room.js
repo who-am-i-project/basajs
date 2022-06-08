@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { UserSpace } from '../user/user_space.js';
 import path from 'node:path';
-import {fileURLToPath} from 'url';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,21 +25,21 @@ export class Room {
 
     endGame() {
         this.removeUsersFromSpace();
-        this.saveResults();
+        return this.collectResults();
     }
 
-    saveResults() {
-        let jsonObject = {
-            users: this.users
-        };
-        let jsonData = JSON.stringify(jsonObject);
-        fs.writeFile(path.join(__dirname, `../../results/${this.id}_results.json`), jsonData, 'utf8', function (err) {
-            if (err) {
-                console.log("An error occured while writing results of game to file.");
-                return console.log(err);
-            }
-            console.log("JSON file has been saved.");
+    collectResults() {
+        let results = [];
+        this.users.forEach(u => {
+            results.push({
+                username: u.username,
+                won: u.won,
+                hp: u.hp,
+                hasDisconnected: u.hasDisconnected,
+                secretWord: u.secretWord
+            });
         });
+        return results;
     }
 
     removeUsersFromSpace() {

@@ -145,12 +145,15 @@ function changeState(roomId) {
         1: () => {
             if (curRoom.isEnd()) {
                 curRoom.state = 2;
-                curRoom.endGame();
+                let statistics = curRoom.endGame();
                 let idx = rooms.findIndex(r => r.id === curRoom.id);
                 if (idx !== -1) {
                     rooms.splice(idx, 1);
                 }
-                io.to(curRoom.id).emit("endState", curRoom.id);
+                io.to(curRoom.id).emit("endState", {
+                    roomID: curRoom.id,
+                    statistics: statistics
+                });
             }
             else {
                 io.to(curRoom.id).emit("voteState");
