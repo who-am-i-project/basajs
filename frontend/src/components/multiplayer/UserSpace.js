@@ -5,8 +5,8 @@ import MyGuess from './MyGuess';
 import { nanoid } from 'nanoid';
 
 const UserSpace = ({ personalQuestions, personalGuesses, isEnabled }) => {
-    let reversedQuestions= personalQuestions.reverse();
-    let reversedGuesses= personalGuesses.reverse();
+    let reversedQuestions = personalQuestions.reverse();
+    let reversedGuesses = personalGuesses.reverse();
     if (isEnabled) {
         return (
             <div className="UserSpace">

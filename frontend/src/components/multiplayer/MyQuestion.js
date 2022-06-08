@@ -1,8 +1,5 @@
 import React from 'react';
 
-// votes= {positiveCount: ..., negativeCount: ...}
-// question = {text:..., userName:..., id:...}
-// secretWord
 const MyQuestion = ({ question }) => {
     return (
         <div className="QuestionBlock">

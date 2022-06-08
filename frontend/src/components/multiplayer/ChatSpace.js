@@ -4,7 +4,7 @@ const ChatSpace = ({ isEnabled, otherQuestions, socket }) => {
     return (
         <div className="ChatSpace">
             {
-                // it otherQuestions is empty display message, else display otherQuestions
+                // if otherQuestions is empty display message, else display otherQuestions
                 otherQuestions.length === 0 ?
                     <p>No other questions yet</p>
                     :

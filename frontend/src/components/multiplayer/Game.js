@@ -66,7 +66,7 @@ const Game = ({ socket }) => {
             setPersonalQuestions(setQuestions);
             setOtherQuestions(setQuestions);
         });
-        socket.on("endState", ({roomId, statistics}) => {
+        socket.on("endState", ({ roomId, statistics }) => {
             socket.emit("leaveRoom", roomId);
             setResults(statistics);
         });

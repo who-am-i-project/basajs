@@ -5,8 +5,8 @@ const Community = () => {
   const [scoreboardItems, setScoreboardItems] = useState([]);
 
   useEffect(() => {
-    fetch("/scoreboard/scoreboardItems").then(res => res.json())
-      .then(parsed => parsed.sort((a, b) => b.score - a.score))
+    fetch("/scoreboard/scoreboardItems").then(res => res.json()).then(sorted => {console.log("raw", sorted); return sorted;})
+      .then(parsed => parsed.sort((a, b) => b.score - a.score)).then(sorted => {console.log("sorted", sorted); return sorted;})
       .then(sorted => setScoreboardItems(sorted));
   }, []);
 

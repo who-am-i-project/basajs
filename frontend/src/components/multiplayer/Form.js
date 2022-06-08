@@ -12,8 +12,16 @@ const Form = ({ postQuestionHandler, guessHandler, isEnabled }) => {
                 onChange={event => setNewInputValue(event.target.value)}
                 placeholder={`Enter your question or guess`} />
             <div className="ButtonRow">
-            <button disabled={!isEnabled} className="FormGuessButton" onClick={() => postQuestionHandler(inputValue, setNewInputValue)}>Post a question</button>
-            <button disabled={!isEnabled} className="FormGuessButton" onClick={() => guessHandler(inputValue, setNewInputValue)}>Guess</button>
+                <button disabled={!isEnabled}
+                    className="FormGuessButton"
+                    onClick={() => postQuestionHandler(inputValue, setNewInputValue)}>
+                    Post a question
+                </button>
+                <button disabled={!isEnabled}
+                    className="FormGuessButton"
+                    onClick={() => guessHandler(inputValue, setNewInputValue)}>
+                    Guess
+                </button>
             </div>
         </div>
     );
