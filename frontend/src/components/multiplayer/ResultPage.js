@@ -7,30 +7,37 @@ const YesNoCell = ({ isPositive }) => {
 }
 
 const ResultPage = ({ results }) => {
-    return (<table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Won</th>
-                <th>HP</th>
-                <th>Disconnected</th>
-                <th>Secret word</th>
-            </tr>
-        </thead>
-        <tbody>
-            {
-                results.map((userResults, idx) =>
-                    <tr key={idx}>
-                        <td>{userResults.username}</td>
-                        <YesNoCell isPositive={userResults.won} />
-                        <td>{userResults.hp}</td>
-                        <YesNoCell isPositive={userResults.hasDisconnected} />
-                        <td>{userResults.secretWord}</td>
-                    </tr>
-                )
-            }
-        </tbody>
-    </table>);
+    return (
+        <div className="ResultWrapper">
+        <p>Game is over!</p>
+        <table className="ResultTable">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Won</th>
+                    <th>HP</th>
+                    <th>Disconnected</th>
+                    <th>Secret word</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    results.map((userResults, idx) =>
+                        <tr key={idx}>
+                            <td>{userResults.username}</td>
+                            <YesNoCell isPositive={userResults.won} />
+                            <td>{userResults.hp}</td>
+                            <td>{userResults.hasDisconnected && "Yes"}
+                                {!userResults.hasDisconnectedect && "No"}
+                            </td>
+                            <td>{userResults.secretWord}</td>
+                        </tr>
+                    )
+                }
+            </tbody>
+        </table>
+        </div>
+    );
 }
 
 export default ResultPage;
