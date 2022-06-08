@@ -41,7 +41,7 @@ const Multiplayer = () => {
             }}>
                 {isInLogin && <Login socket={socket} />}
                 {!isInLogin && (!socketConfiguredForGame || !roomFull) && <WaitingLobby />}
-                {!isInLogin && <Game socket={socket} />}
+                {!isInLogin && !results && <Game socket={socket} />}
                 {results && <ResultPage results={results} />}
             </MultiplayerContext.Provider>
         );
