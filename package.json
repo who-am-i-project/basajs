@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js && npx json-server --watch scoreboard.json -p 8001",
+    "start": "concurrently --kill-others \"node backend/server.js\" \"npx json-server --watch scoreboard.json -p 8001\"",
     "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
